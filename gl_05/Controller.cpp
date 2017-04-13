@@ -24,3 +24,8 @@ void Controller::key_callback(GLFWwindow* window, int key, int scancode, int act
 			keys[key] = false;
 	}
 }
+
+bool Controller::iKBP(int i)
+{
+	return keys[i];
+}

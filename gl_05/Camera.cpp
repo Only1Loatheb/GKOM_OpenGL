@@ -5,10 +5,9 @@
 Camera::Camera()
 :cameraPos(glm::vec3(0.0f, 0.0f, 3.0f)),
 cameraTarget(glm::vec3(0.0f, 0.0f, 0.0f)),
-cameraDirection(glm::normalize(cameraPos - cameraTarget)),
 up(glm::vec3(0.0f, 1.0f, 0.0f)),
-cameraRight(glm::normalize(glm::cross(up, cameraDirection))),
-cameraUp(glm::cross(cameraDirection, cameraRight)),
+cameraRight(glm::normalize(glm::cross(up, glm::normalize(cameraPos - cameraTarget)))),
+cameraUp(glm::cross(glm::normalize(cameraPos - cameraTarget), cameraRight)),
 view(glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f),
 	glm::vec3(0.0f, 0.0f, 0.0f),
 	glm::vec3(0.0f, 1.0f, 0.0f)))

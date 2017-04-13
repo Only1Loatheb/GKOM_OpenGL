@@ -3,6 +3,7 @@
 #include "Figure.h"
 #include "Perspective.h"
 #include "CircleCamera.h"
+#include "FlayingCamera.h"
 #include "Timer.h"
 static const GLuint WIDTH = 800;
 static const GLuint HEIGHT = 600;
@@ -14,7 +15,8 @@ int main()
 		Window w(WIDTH, HEIGHT, &Controller::key_callback, "moje okienko <3");		
 		Figure f = Figure();
 		Perspective p = Perspective(WIDTH,HEIGHT);
-		auto c = CircleCamera(10,2);
+		//auto c = CircleCamera(10,2);
+		auto c = FlayingCamera();
 		Timer t = Timer();
 		while (!w.shouldClose())
 		{

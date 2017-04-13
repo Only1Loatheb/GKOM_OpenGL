@@ -9,6 +9,7 @@ public:
 	Controller();
 	~Controller();
 	static void key_callback(GLFWwindow*, int, int, int, int);
+	static bool iKBP(int) ;
 private:
 	static bool* keys;
 };

@@ -13,7 +13,6 @@ public:
 	virtual void update(GLfloat dt) = 0;
 	glm::vec3 cameraPos;
 	glm::vec3 cameraTarget;
-	glm::vec3 cameraDirection;
 	glm::vec3 up;
 	glm::vec3 cameraRight;
 	glm::vec3 cameraUp;
