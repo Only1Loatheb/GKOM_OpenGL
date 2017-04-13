@@ -11,10 +11,10 @@ public:
 	~Figure();
 	GLuint get_programID() const;
 	glm::mat4 getLocalMat() const;
-	void Draw() const;
+	void draw() const;
 private:
-	Shape shape;
 	ShaderProgram shader;
+	Shape shape;
 	Texture t0;
 	Texture t1;
 	GLuint VBO, EBO, VAO;

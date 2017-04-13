@@ -1,6 +1,5 @@
 #pragma once
 #include "Camera.h"
-#include "Controller.h"
 
 class FlayingCamera: public Camera
 {

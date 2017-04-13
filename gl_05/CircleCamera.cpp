@@ -14,7 +14,11 @@ CircleCamera::~CircleCamera()
 
 void CircleCamera::update(GLfloat dt)
 {	
-	GLfloat speed = 10.0f;
+	GLfloat speed = 0;
+	if (Controller::iKBP(GLFW_KEY_A))
+		speed -= 100.0f;
+	if (Controller::iKBP(GLFW_KEY_D))
+		speed += 100.0f;
 	rotation = glm::rotate(rotation, glm::radians(dt * speed), up);
 	view = glm::lookAt(glm::vec3(rotation * glm::vec4(cameraPos, 1.0f)) , cameraTarget, up);
 }

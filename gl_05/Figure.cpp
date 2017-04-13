@@ -54,7 +54,7 @@ glm::mat4  Figure::getLocalMat() const
 	return local;
 }
 
-void Figure::Draw() const
+void Figure::draw() const
 {
 	t0.bind();
 	glUniform1i(glGetUniformLocation(get_programID(), "Texture0"), 0);

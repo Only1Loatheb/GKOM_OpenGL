@@ -16,12 +16,20 @@ void Controller::key_callback(GLFWwindow* window, int key, int scancode, int act
 	std::cout << key << std::endl;
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
-	if (key >= 0 && key < 1024)
+	if (key >= 0 && key < KEYS)
 	{
 		if (action == GLFW_PRESS)
 			keys[key] = true;
 		else if (action == GLFW_RELEASE)
 			keys[key] = false;
+	}
+}
+
+void Controller::init()
+{
+	for (int i = 0; i < KEYS; ++i)
+	{
+		keys[i] = false;
 	}
 }
 

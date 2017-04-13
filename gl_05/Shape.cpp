@@ -1,11 +1,12 @@
-#include "Figure.h"
+#include "Figure.h"	
 
 
 Shape::Shape()
+:w(8),
+h(8),
+i(5)
 {
-	w = 8;
-	h = 8;
-	i = 5;
+
 	vertices = new GLfloat[w * h]{
 		// coordinates			// color			// texture
 		 0.25f,  0.5f,  0.0f,	1.0f, 0.0f, 0.0f,	1.0f,  0.0f,

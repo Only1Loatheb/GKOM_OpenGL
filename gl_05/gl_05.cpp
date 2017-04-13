@@ -1,3 +1,4 @@
+#include <vector>
 #include "Window.h"
 #include "Controller.h"
 #include "Figure.h"
@@ -12,28 +13,33 @@ int main()
 {
 	try
 	{
-		Window w(WIDTH, HEIGHT, &Controller::key_callback, "moje okienko <3");		
-		Figure f = Figure();
-		Perspective p = Perspective(WIDTH,HEIGHT);
+		Controller::init();
+		Window window(WIDTH, HEIGHT, &Controller::key_callback, "moje okienko <3");		
+		std::vector<Figure> figures = std::vector<Figure>();
+		figures.push_back(Figure());
+		Perspective perspective = Perspective(WIDTH,HEIGHT);
 		//auto c = CircleCamera(10,2);
-		auto c = FlayingCamera();
-		Timer t = Timer();
-		while (!w.shouldClose())
+		auto camera = FlayingCamera();
+		Timer timer = Timer();
+		while (!window.shouldClose())
 		{
-			w.pollEvents();
-			w.clearBuffer();
-			t.update();
-			c.update(t.getDeltaTime());
-			p.update(c.getView(), f);
-			f.Draw();
-			w.swapBuffers();
+			window.pollEvents();
+			window.clearBuffer();
+			timer.update();
+			camera.update(timer.getDeltaTime());
+			perspective.update(camera.getView(), figures);
+			for (Figure f : figures)
+			{
+				f.draw();
+			}
+			window.swapBuffers();
 
 		}
 
 	}
-	catch (exception ex)
+	catch (std::exception ex)
 	{
-		cout << ex.what() << endl;
+		std::cout << ex.what() << std::endl;
 	}
 	return 0;
 }
