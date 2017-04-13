@@ -1,12 +1,10 @@
 #include "Figure.h"
-
-
-
 Figure::Figure()
 :shader(ShaderProgram("gl_05.vert", "gl_05.frag")),
- shape(Shape()),
- t0(Texture(GL_TEXTURE0, "iipw.png")),
- t1(Texture(GL_TEXTURE1, "weiti.png"))
+shape(Shape()),
+t0(Texture(GL_TEXTURE0, "iipw.png")),
+t1(Texture(GL_TEXTURE1, "weiti.png")),
+local(glm::mat4())
 {
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
@@ -49,6 +47,11 @@ Figure::~Figure()
 GLuint Figure::get_programID() const
 {
 	return shader.get_programID();
+}
+
+glm::mat4  Figure::getLocalMat() const
+{
+	return local;
 }
 
 void Figure::Draw() const

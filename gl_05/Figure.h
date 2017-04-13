@@ -9,7 +9,8 @@ class Figure
 public:
 	Figure();
 	~Figure();
-	GLuint get_programID() const;//to_do
+	GLuint get_programID() const;
+	glm::mat4 getLocalMat() const;
 	void Draw() const;
 private:
 	Shape shape;
@@ -19,5 +20,6 @@ private:
 	GLuint VBO, EBO, VAO;
 	const GLchar* v;
 	const GLchar* f;
+	glm::mat4 local;
 };
 

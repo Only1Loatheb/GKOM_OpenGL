@@ -6,9 +6,8 @@ Perspective::Perspective(GLuint width, GLuint height)
 	rot_angle = 0.0f;
 
 	proj = glm::perspective(45.0f, (float)width / (float)height, 0.1f, 100.0f);
-	model = glm::rotate(model, -55.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-	projection = glm::perspective(45.0f, screenWidth / screenHeight, 0.1f, 100.0f);
+	model = glm::rotate(model, -55.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 }
 
 Perspective::~Perspective()
@@ -20,12 +19,9 @@ const GLfloat * Perspective::getTrans()
 	return glm::value_ptr(trans);
 }
 
-void Perspective::update(GLfloat time, Figure& f)
+void Perspective::update(GLfloat time,const Figure& f)
 {
-	trans = glm::rotate(trans, -glm::radians(rot_angle), glm::vec3(1.0, 0.0, 0.0));
-	rot_angle += time; //step
-	if (rot_angle >= 360.0f)
-		rot_angle -= 360.0f;
+	trans = proj * view * model * f.getLocalMat();
 	GLuint transformLoc = glGetUniformLocation(f.get_programID(), "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, getTrans()); //wrzucamy macierz na karte graficzna do programu szejdera XDDDDDD
 
