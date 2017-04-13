@@ -82,13 +82,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CircleCamera.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="FlayingCamera.cpp" />
     <ClCompile Include="Perspective.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="gl_05.cpp" />
     <ClCompile Include="shprogram.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -100,12 +104,16 @@
     <Image Include="weiti.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CircleCamera.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="FlayingCamera.h" />
     <ClInclude Include="Perspective.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="shprogram.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

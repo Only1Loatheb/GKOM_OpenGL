@@ -25,7 +25,7 @@ Window::Window(const GLuint width, const GLuint height, GLFWkeyfun kay_callback,
 		throw std::exception("GLEW Initialization failed");
 
 	glViewport(0, 0, width, width); //area of window avalible for openGl
-
+	glEnable(GL_DEPTH_TEST);
 }
 
 
@@ -45,4 +45,5 @@ void Window::clearScreen()
 {
 	glClearColor(0.1f, 0.2f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
