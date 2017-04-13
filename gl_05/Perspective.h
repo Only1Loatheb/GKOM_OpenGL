@@ -10,13 +10,18 @@ using namespace std;
 class Perspective
 {
 public:
-	Perspective();
+	Perspective(GLuint, GLuint);
 	~Perspective();	
 	void update(GLfloat time, Figure&);
 private:
 	const GLfloat* getTrans();
 	glm::mat4 trans;
 	GLfloat rot_angle;
+
+	glm::mat4 proj;
+	glm::mat4 model;
+	glm::mat4 view;
+	glm::mat4 projection;
 };
 ostream& operator<<(ostream& os, const glm::mat4& mx);
 /*	biblioteka do macierzy przyk³ad

@@ -11,7 +11,7 @@ int main()
 	{
 		Window w(WIDTH, HEIGHT, &Controller::key_callback, "moje okienko <3");		
 		Figure f = Figure();
-		Perspective p = Perspective();
+		Perspective p = Perspective(WIDTH,HEIGHT);
 		while (!w.shouldClose())
 		{
 			w.pollEvents();

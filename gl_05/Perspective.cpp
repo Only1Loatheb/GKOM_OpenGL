@@ -1,9 +1,14 @@
 #include "Perspective.h"
 
-Perspective::Perspective()
+Perspective::Perspective(GLuint width, GLuint height)
 {
 	trans = glm::mat4();
 	rot_angle = 0.0f;
+
+	proj = glm::perspective(45.0f, (float)width / (float)height, 0.1f, 100.0f);
+	model = glm::rotate(model, -55.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+	projection = glm::perspective(45.0f, screenWidth / screenHeight, 0.1f, 100.0f);
 }
 
 Perspective::~Perspective()
