@@ -6,7 +6,6 @@ Perspective::Perspective(GLuint width, GLuint height)
 	rot_angle = 0.0f;
 
 	proj = glm::perspective(45.0f, (float)width / (float)height, 0.1f, 100.0f);
-	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 	model = glm::rotate(model, -55.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 }
 
@@ -14,12 +13,13 @@ Perspective::~Perspective()
 {
 }
 
+
 const GLfloat * Perspective::getTrans()
 {
 	return glm::value_ptr(trans);
 }
 
-void Perspective::update(GLfloat time,const Figure& f)
+void Perspective::update(const glm::mat4 view,const Figure& f)
 {
 	trans = proj * view * model * f.getLocalMat();
 	GLuint transformLoc = glGetUniformLocation(f.get_programID(), "transform");

@@ -13,7 +13,7 @@ public:
 	Window(const GLuint,const GLuint, GLFWkeyfun, std::string);
 	~Window();
 	bool shouldClose() const;
-	void clearScreen() const;
+	void clearBuffer() const;
 	void pollEvents() const;
 	void swapBuffers() const;
 private:

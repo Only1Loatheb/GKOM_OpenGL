@@ -12,7 +12,7 @@ class Perspective
 public:
 	Perspective(GLuint, GLuint);
 	~Perspective();	
-	void update(GLfloat time,const Figure&);
+	void update(const glm::mat4,const Figure&);
 private:
 	const GLfloat* getTrans();
 	glm::mat4 trans;
@@ -20,7 +20,6 @@ private:
 
 	glm::mat4 proj;
 	glm::mat4 model;
-	glm::mat4 view;
 	glm::mat4 projection;
 };
 ostream& operator<<(ostream& os, const glm::mat4& mx);

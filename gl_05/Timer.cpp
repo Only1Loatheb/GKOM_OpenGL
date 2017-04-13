@@ -1,12 +1,9 @@
 #include "Timer.h"
 
-
-
 Timer::Timer()
 	:prevTime(glfwGetTime())
 {
 }
-
 
 Timer::~Timer()
 {
