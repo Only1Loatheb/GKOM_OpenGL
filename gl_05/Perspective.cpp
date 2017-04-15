@@ -10,12 +10,12 @@ Perspective::~Perspective()
 {
 }
 
-void Perspective::update(const glm::mat4 view, std::vector<Figure>& figures)
+void Perspective::update(const glm::mat4 view, std::vector<std::unique_ptr<Figure>>& figures)
 {
-	for (Figure f : figures)
+	for (std::unique_ptr<Figure>& f : figures)
 	{
-		glm::mat4 trans = proj * view * model * f.getLocalMat();
-		GLuint transformLoc = glGetUniformLocation(f.get_programID(), "transform");
+		glm::mat4 trans = proj * view * model * f->getLocalMat();
+		GLuint transformLoc = glGetUniformLocation(f->get_programID(), "transform");
 		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value_ptr(trans)); //wrzucamy macierz na karte graficzna do programu szejdera XDDDDDD
 	}
 }

@@ -60,8 +60,8 @@ void Figure::draw() const
 	glUniform1i(glGetUniformLocation(get_programID(), "Texture0"), 0);
 	t1.bind();
 	glUniform1i(glGetUniformLocation(get_programID(), "Texture1"), 1);
-	shader.Use();
+	shader.use();
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, shape.sizeofIndices(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, shape.countofIndices(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }

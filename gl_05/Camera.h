@@ -12,6 +12,7 @@ public:
 	~Camera();
 	glm::mat4 getView() const;
 	virtual void update(GLfloat dt) = 0;
+protected:
 	glm::vec3 cameraPos;
 	glm::vec3 cameraTarget;
 	glm::vec3 up;

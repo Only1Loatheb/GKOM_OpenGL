@@ -67,7 +67,7 @@ GLuint ShaderProgram::compile_shader(const GLchar* shaderCode, GLenum shaderType
 	return shader_id;
 }
 
-void ShaderProgram::Use() const
+void ShaderProgram::use() const
 {
 	glUseProgram(program_id);
 }

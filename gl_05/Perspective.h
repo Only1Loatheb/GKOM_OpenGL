@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <memory>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -11,7 +12,7 @@ class Perspective
 public:
 	Perspective(GLuint, GLuint);
 	~Perspective();	
-	void update(const glm::mat4,std::vector<Figure>&);
+	void update(const glm::mat4, std::vector<std::unique_ptr<Figure>>&);
 private:
 	glm::mat4 proj;
 	glm::mat4 model;

@@ -1,4 +1,5 @@
 #include <vector>
+#include <memory>
 #include "Window.h"
 #include "Controller.h"
 #include "Figure.h"
@@ -15,8 +16,8 @@ int main()
 	{
 		Controller::init();
 		Window window(WIDTH, HEIGHT, &Controller::key_callback, "moje okienko <3");		
-		std::vector<Figure> figures = std::vector<Figure>();
-		figures.push_back(Figure());
+		auto figures = std::vector<std::unique_ptr<Figure>>();
+		figures.push_back(std::move(std::make_unique<Figure>())); //dynamic_cast<Figure>();
 		Perspective perspective = Perspective(WIDTH,HEIGHT);
 		//auto c = CircleCamera(10,2);
 		auto camera = FlayingCamera();
@@ -28,10 +29,8 @@ int main()
 			timer.update();
 			camera.update(timer.getDeltaTime());
 			perspective.update(camera.getView(), figures);
-			for (Figure f : figures)
-			{
-				f.draw();
-			}
+			for (std::unique_ptr<Figure>& f : figures)
+				f->draw();
 			window.swapBuffers();
 
 		}

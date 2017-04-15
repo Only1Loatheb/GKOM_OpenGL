@@ -9,12 +9,12 @@ public:
 	virtual GLuint* getIndices() const;
 	GLsizeiptr sizeofVertices() const;
 	GLsizeiptr sizeofIndices() const;
-
-private:
+	GLsizei countofIndices() const;
+protected:
 	GLfloat* vertices;
 	GLuint* indices;
-	GLuint w ;
-	GLuint h ;
-	GLuint i ;
+	GLsizei w ;
+	GLsizei h ;
+	GLsizei i ;
 };
 

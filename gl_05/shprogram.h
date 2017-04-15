@@ -9,7 +9,7 @@ class ShaderProgram
 {
 public:
 	ShaderProgram(const GLchar* vertexPath, const GLchar* fragmentPath);
-	void Use() const;
+	void use() const;
 	GLuint get_programID() const;
 private:
 	GLuint program_id; 	// The program ID

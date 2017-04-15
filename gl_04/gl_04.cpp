@@ -164,6 +164,7 @@ int main()
 			theProgram.Use();
 
 			glBindVertexArray(VAO);
+			cout << _countof(indices) << endl;
 			glDrawElements(GL_TRIANGLES, _countof(indices), GL_UNSIGNED_INT, 0);
 			glBindVertexArray(0);
 

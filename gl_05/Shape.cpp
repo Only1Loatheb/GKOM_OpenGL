@@ -49,3 +49,8 @@ GLsizeiptr Shape::sizeofIndices() const
 {
 	return sizeof(GLuint) * i * 3;
 }
+
+GLsizei Shape::countofIndices() const
+{
+	return i * 3;
+}
