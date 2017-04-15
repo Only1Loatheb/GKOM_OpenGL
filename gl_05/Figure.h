@@ -7,7 +7,7 @@
 class Figure
 {
 public:
-	Figure();
+	Figure(const GLchar* vertexPath = "figure.vert", const GLchar* fragmentPath = "figure.frag");
 	~Figure();
 	GLuint get_programID() const;
 	glm::mat4 getLocalMat() const;

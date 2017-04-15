@@ -1,6 +1,6 @@
 #include "Figure.h"
-Figure::Figure()
-:shader(ShaderProgram("gl_05.vert", "gl_05.frag")),
+Figure::Figure(const GLchar* vertexPath ="figure.vert", const GLchar* fragmentPath ="figure.frag")
+:shader(ShaderProgram(vertexPath, fragmentPath)),
 shape(Shape()),
 t0(Texture(GL_TEXTURE0, "iipw.png")),
 t1(Texture(GL_TEXTURE1, "weiti.png")),

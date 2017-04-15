@@ -96,8 +96,9 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="gl_05.frag" />
-    <None Include="gl_05.vert" />
+    <None Include="figure.frag" />
+    <None Include="figure.vert" />
+    <None Include="lamp.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png" />

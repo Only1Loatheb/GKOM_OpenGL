@@ -53,8 +53,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="gl_05.frag" />
-    <None Include="gl_05.vert" />
+    <None Include="lamp.vert" />
+    <None Include="figure.vert" />
+    <None Include="figure.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png">
