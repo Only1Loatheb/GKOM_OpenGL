@@ -1,5 +1,5 @@
 #include "Figure.h"
-Figure::Figure(const GLchar* vertexPath ="figure.vert", const GLchar* fragmentPath ="figure.frag")
+Figure::Figure(const GLchar* vertexPath , const GLchar* fragmentPath )
 :shader(ShaderProgram(vertexPath, fragmentPath)),
 shape(Shape()),
 t0(Texture(GL_TEXTURE0, "iipw.png")),

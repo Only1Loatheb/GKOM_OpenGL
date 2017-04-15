@@ -86,6 +86,7 @@
     <ClCompile Include="CircleCamera.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="FlayingCamera.cpp" />
+    <ClCompile Include="Lamp.cpp" />
     <ClCompile Include="Perspective.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="Shape.cpp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="CircleCamera.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="FlayingCamera.h" />
+    <ClInclude Include="Lamp.h" />
     <ClInclude Include="Perspective.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="Shape.h" />

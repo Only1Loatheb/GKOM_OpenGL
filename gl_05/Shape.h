@@ -1,5 +1,8 @@
 #pragma once
 #include <GL/glew.h>
+#include <vector>
+using namespace std;
+
 class Shape
 {
 public:
@@ -11,10 +14,12 @@ public:
 	GLsizeiptr sizeofIndices() const;
 	GLsizei countofIndices() const;
 protected:
-	GLfloat* vertices;
-	GLuint* indices;
-	GLsizei w ;
-	GLsizei h ;
-	GLsizei i ;
+	GLsizei vertexAtributesCount;
+	GLsizei verticesCount;
+	GLsizei indicesCount;
+	vector<GLfloat> vertices;
+	vector<GLuint> indices;
+
+	//virtual void init();
 };
 

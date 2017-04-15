@@ -19,8 +19,8 @@ int main()
 		auto figures = std::vector<std::unique_ptr<Figure>>();
 		figures.push_back(std::move(std::make_unique<Figure>())); //dynamic_cast<Figure>();
 		Perspective perspective = Perspective(WIDTH,HEIGHT);
-		//auto c = CircleCamera(10,2);
-		auto camera = FlayingCamera();
+		auto camera = CircleCamera(10,2);
+		//auto camera = FlayingCamera();
 		Timer timer = Timer();
 		while (!window.shouldClose())
 		{

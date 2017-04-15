@@ -12,7 +12,7 @@ public:
 	GLuint get_programID() const;
 	glm::mat4 getLocalMat() const;
 	void draw() const;
-private:
+protected:
 	ShaderProgram shader;
 	Shape shape;
 	Texture t0;
