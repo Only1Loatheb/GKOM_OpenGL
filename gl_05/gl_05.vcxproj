@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png" />
+    <Image Include="metal.png" />
     <Image Include="weiti.png" />
   </ItemGroup>
   <ItemGroup>

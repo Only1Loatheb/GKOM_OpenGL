@@ -16,15 +16,23 @@ glm::mat4  Figure::getLocalMat() const
 	return local;
 }
 
-void Figure::draw() const
+void Figure::draw(const glm::mat4& perspective) const
 {
+	glm::mat4 trans = perspective * local;
+	GLuint transformLoc = glGetUniformLocation(getProgramID(), "transform");
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value_ptr(trans)); //wrzucamy macierz na karte graficzna do programu szejdera XDDDDDD
+
 	texture->bind();
 	shader->acceptTexture();
 	shader->use();
 	shape->draw();
 }
 
-GLuint Figure::get_programID() const
+GLuint Figure::getProgramID() const
 {
-	return shader->get_programID();
+	return shader->getProgramID();
+}
+
+void Figure::update( GLfloat dt)
+{
 }

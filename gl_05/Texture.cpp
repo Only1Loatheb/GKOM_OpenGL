@@ -36,3 +36,8 @@ void Texture::bind() const
 	glActiveTexture(texId);
 	glBindTexture(GL_TEXTURE_2D, texture);
 }
+
+GLuint Texture::getTexID() const
+{
+	return texId;
+}

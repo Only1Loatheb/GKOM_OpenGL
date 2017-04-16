@@ -10,7 +10,7 @@ class Camera
 public:
 	Camera();
 	~Camera();
-	glm::mat4 getView() const;
+	const glm::mat4& getView() const;
 	virtual void update(GLfloat dt) = 0;
 protected:
 	glm::vec3 cameraPos;

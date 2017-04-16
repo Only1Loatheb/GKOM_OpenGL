@@ -16,6 +16,8 @@ protected:
 	GLsizeiptr sizeofIndices() const;
 	GLsizei countofIndices() const;
 
+	void Shape::calcNormalVec(vector<GLfloat>&);
+
 	GLsizei vertexAtributesCount;
 	GLsizei verticesCount;
 	GLsizei indicesCount;
@@ -24,4 +26,3 @@ protected:
 	GLuint VBO, EBO, VAO;
 	//virtual void init();
 };
-

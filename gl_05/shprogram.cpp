@@ -8,25 +8,25 @@ using namespace std;
 ShaderProgram::ShaderProgram(const GLchar* vertexPath, const GLchar* fragmentPath)
 {
 	// prepare vertex and fragment shaders
-	string vertex_code = read_shader_code(vertexPath);
-	GLuint vertex_id = compile_shader(vertex_code.c_str(), GL_VERTEX_SHADER);
+	string vertex_code = readShaderCode(vertexPath);
+	GLuint vertex_id = compileShader(vertex_code.c_str(), GL_VERTEX_SHADER);
 
-	string fragment_code = read_shader_code(fragmentPath);
-	GLuint fragment_id = compile_shader(fragment_code.c_str(), GL_FRAGMENT_SHADER);
+	string fragment_code = readShaderCode(fragmentPath);
+	GLuint fragment_id = compileShader(fragment_code.c_str(), GL_FRAGMENT_SHADER);
 
 	// link shader program
-	program_id = glCreateProgram();
-	glAttachShader(program_id, vertex_id);
-	glAttachShader(program_id, fragment_id);
-	glLinkProgram(program_id);
+	programID = glCreateProgram();
+	glAttachShader(programID, vertex_id);
+	glAttachShader(programID, fragment_id);
+	glLinkProgram(programID);
 
 	// Print linking errors if any
 	GLint success;
-	glGetProgramiv(program_id, GL_LINK_STATUS, &success);
+	glGetProgramiv(programID, GL_LINK_STATUS, &success);
 	if (!success)
 	{
 		GLchar infoLog[512];
-		glGetProgramInfoLog(program_id, sizeof(infoLog), NULL, infoLog);
+		glGetProgramInfoLog(programID, sizeof(infoLog), NULL, infoLog);
 		string msg = string("Shader program linking: ") + infoLog;
 		throw exception(msg.c_str());
 	}
@@ -36,7 +36,7 @@ ShaderProgram::ShaderProgram(const GLchar* vertexPath, const GLchar* fragmentPat
 	glDeleteShader(fragment_id);
 }
 
-string ShaderProgram::read_shader_code(const GLchar* shaderPath)
+string ShaderProgram::readShaderCode(const GLchar* shaderPath)
 {
 	ifstream shader_file;
 	shader_file.exceptions(ifstream::badbit);
@@ -48,7 +48,7 @@ string ShaderProgram::read_shader_code(const GLchar* shaderPath)
 	return shader_stream.str();
 }
 
-GLuint ShaderProgram::compile_shader(const GLchar* shaderCode, GLenum shaderType)
+GLuint ShaderProgram::compileShader(const GLchar* shaderCode, GLenum shaderType)
 {
 	GLuint shader_id = glCreateShader(shaderType);
 	glShaderSource(shader_id, 1, &shaderCode, NULL);
@@ -69,15 +69,15 @@ GLuint ShaderProgram::compile_shader(const GLchar* shaderCode, GLenum shaderType
 
 void ShaderProgram::use() const
 {
-	glUseProgram(program_id);
+	glUseProgram(programID);
 }
 
-GLuint ShaderProgram::get_programID() const
+GLuint ShaderProgram::getProgramID() const
 {
-	return program_id;
+	return programID;
 }
 
 void ShaderProgram::acceptTexture() const
 {
-	glUniform1i(glGetUniformLocation(program_id, "Texture0"), 0);
+	glUniform1i(glGetUniformLocation(programID, "Texture0"),0);
 }

@@ -11,10 +11,9 @@ class Perspective
 {
 public:
 	Perspective(GLuint, GLuint);
-	~Perspective();	
-	void update(const glm::mat4, std::vector<std::unique_ptr<Figure>>&);
+	~Perspective();
+	glm::mat4 getTrans(const glm::mat4&)const;
 private:
 	glm::mat4 proj;
 	glm::mat4 model;
-	glm::mat4 projection;
 };

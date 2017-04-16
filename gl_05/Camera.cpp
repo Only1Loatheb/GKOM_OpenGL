@@ -19,7 +19,7 @@ Camera::~Camera()
 {
 }
 
-glm::mat4 Camera::getView() const
+const glm::mat4& Camera::getView() const
 {
 	return view;
 }

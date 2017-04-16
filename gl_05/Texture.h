@@ -11,6 +11,7 @@ public:
 	Texture(GLuint , const char*);
 	~Texture();
 	void bind()const;
+	GLuint getTexID()const;
 private:
 	GLuint texture;
 	GLuint texId;
