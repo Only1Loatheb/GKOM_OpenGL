@@ -10,7 +10,7 @@ public:
 	// Use the program
 	void Use() const
 	{
-		glUseProgram(get_programID());
+		glUseProgram(program_id);
 	}
 
 	// returns program ID

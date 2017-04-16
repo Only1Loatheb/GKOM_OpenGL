@@ -76,3 +76,8 @@ GLuint ShaderProgram::get_programID() const
 {
 	return program_id;
 }
+
+void ShaderProgram::acceptTexture() const
+{
+	glUniform1i(glGetUniformLocation(program_id, "Texture0"), 0);
+}

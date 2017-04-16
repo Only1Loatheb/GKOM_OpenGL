@@ -22,6 +22,7 @@ Window::Window(const GLuint width, const GLuint height, GLFWkeyfun kay_callback,
 		throw std::exception("GLEW Initialization failed");
 
 	glViewport(0, 0, width, height);
+	glEnable(GL_DEPTH_TEST);
 }
 
 

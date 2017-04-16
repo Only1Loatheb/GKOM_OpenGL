@@ -11,6 +11,7 @@ public:
 	ShaderProgram(const GLchar* vertexPath, const GLchar* fragmentPath);
 	void use() const;
 	GLuint get_programID() const;
+	void acceptTexture() const;
 private:
 	GLuint program_id; 	// The program ID
 	std::string read_shader_code(const GLchar*);

@@ -16,12 +16,15 @@ int main()
 	{
 		Controller::init();
 		Window window(WIDTH, HEIGHT, &Controller::key_callback, "moje okienko <3");		
+		auto figureSh = make_shared<ShaderProgram>("figure.vert", "figure.frag");
+		auto box = make_shared<Shape>();
+		auto weiti = make_shared<Texture>(GL_TEXTURE0, "iipw.png");
 		auto figures = std::vector<std::unique_ptr<Figure>>();
-		figures.push_back(std::move(std::make_unique<Figure>())); //dynamic_cast<Figure>();
-		Perspective perspective = Perspective(WIDTH,HEIGHT);
+		figures.push_back(std::move(std::make_unique<Figure>(figureSh, box, weiti))); //dynamic_cast<Figure>();
+		auto perspective = Perspective(WIDTH,HEIGHT);
 		auto camera = CircleCamera(10,2);
 		//auto camera = FlayingCamera();
-		Timer timer = Timer();
+		auto timer = Timer();
 		while (!window.shouldClose())
 		{
 			window.pollEvents();

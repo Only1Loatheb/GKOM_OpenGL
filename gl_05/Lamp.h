@@ -3,7 +3,7 @@
 class Lamp :public Figure 
 {
 public:
-	Lamp();
+	Lamp(shared_ptr<ShaderProgram>&, shared_ptr<Shape>&, shared_ptr<Texture>&);
 	~Lamp();
 };
 
