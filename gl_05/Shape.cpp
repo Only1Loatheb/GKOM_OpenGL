@@ -20,13 +20,13 @@ indicesCount(12 * 3)
 	
 		-0.5f,  0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.0f,  1.0f,
 		 0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	1.0f,  0.0f,
-		-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.0f,  0.0f,
 		 0.5f,  0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	1.0f,  1.0f,
+		-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.0f,  0.0f,
 		
 		-0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.0f,  1.0f,
 		 0.5f, -0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	1.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	1.0f,  1.0f,
 		-0.5f, -0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.0f,  0.0f,
+		 0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	1.0f,  1.0f,
 
 		-0.5f, -0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.0f,  1.0f,
 		-0.5f,  0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	1.0f,  0.0f,
@@ -40,7 +40,13 @@ indicesCount(12 * 3)
 	};
 
 	calcNormalVec(vertices);
-
+#pragma region showNormals 
+	auto vAC4 = 4 * vertexAtributesCount;;
+	for (int i = 0; i < verticesCount; i += vAC4)
+	{
+	cout << vertices[i + 3] << " " << vertices[i + 4] << " " << vertices[i + 5] << endl;
+	}
+#pragma endregion
 	indices = vector<GLuint>();
 	for (int i = 0; i < indicesCount; i+=4)
 	{
@@ -139,17 +145,17 @@ void Shape::calcNormalVec(vector<GLfloat>& v)
 		glm::vec3 k = p3 - p1;
 
 		glm::vec3 normal = glm::cross(k, l);
-
+		/*
 		v[i + 3] = v[i + 3 + vAC] = v[i + 3 + vAC2] = v[i + 3 + vAC3] = normal.x;
 		v[i + 4] = v[i + 4 + vAC] = v[i + 4 + vAC2] = v[i + 4 + vAC3] = normal.y;
 		v[i + 5] = v[i + 5 + vAC] = v[i + 5 + vAC2] = v[i + 5 + vAC3] = normal.z;
-		/*
+		*/
 		// ib4 jest niewydajnie wiêc u¿ylmy c
 		memcpy(&v[i + 3],		 &normal.x, sizeOf3Floats);
 		memcpy(&v[i + 3 + vAC ], &normal.x, sizeOf3Floats);
 		memcpy(&v[i + 3 + vAC2], &normal.x, sizeOf3Floats);
 		memcpy(&v[i + 3 + vAC3], &normal.x, sizeOf3Floats);
-		*/
+		
 	}
 
 }

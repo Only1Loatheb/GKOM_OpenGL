@@ -23,3 +23,10 @@ const glm::mat4& Camera::getView() const
 {
 	return view;
 }
+
+void Camera::addCametaPosToSh(std::shared_ptr<ShaderProgram>& program) const
+{
+	GLint viewPosLoc = glGetUniformLocation(program->getProgramID(), "viewPos");
+	glUniform3f(viewPosLoc, cameraPos.x, cameraPos.y, cameraPos.z);
+}
+

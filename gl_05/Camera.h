@@ -1,17 +1,20 @@
 #pragma once
+#include <memory>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <GLFW/glfw3.h>
 #include "Controller.h"
+#include "shprogram.h"
 class Camera
 {
 public:
 	Camera();
 	~Camera();
 	const glm::mat4& getView() const;
-	virtual void update(GLfloat dt) = 0;
+	virtual void update(GLfloat dt , std::shared_ptr<ShaderProgram>& program) = 0;
+	void addCametaPosToSh(std::shared_ptr<ShaderProgram>&) const;
 protected:
 	glm::vec3 cameraPos;
 	glm::vec3 cameraTarget;

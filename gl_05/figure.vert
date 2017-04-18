@@ -4,14 +4,17 @@ layout (location = 0) in vec3 position;
 layout (location = 1) in vec3 normal;
 layout (location = 2) in vec2 texCoord;
 
+out vec3 fragPos;
 out vec3 vecNormal;
 out vec2 TexCoord;
   
 uniform mat4 transform; //mamy zmienna z macierza translacji
-
+uniform mat4 local;
+uniform mat4 inverted;
 void main()
 {
-    gl_Position = transform * vec4(position, 1.0f);  //tu jedno mnozenie
-    vecNormal = normal;
+    fragPos = (local * vec4(position, 1.0f)).xyz;
+	vecNormal = (inverted * vec4(normal, 1.0f)).xyz;
     TexCoord = texCoord;
+	gl_Position = transform * vec4(position, 1.0f);  //tu jedno mnozenie
 } 

@@ -23,17 +23,20 @@ int main()
 		auto metal = make_shared<Texture>(GL_TEXTURE0, "metal.png");
 		auto figures = std::vector<std::unique_ptr<Figure>>();
 		figures.push_back(std::move(std::make_unique<Figure>(figureSh, box, metal))); //dynamic_cast<Figure>();
-		figures.push_back(std::move(std::make_unique<Lamp>(figureSh, box, weiti))); //dynamic_cast<Figure>();
+		auto lamp = Lamp(figureSh, box, weiti);
 		auto perspective = Perspective(WIDTH,HEIGHT);
-		//auto camera = CircleCamera(10,2);
-		auto camera = FlayingCamera();
+		auto camera = CircleCamera(10,2);
+		//auto camera = FlayingCamera();
 		auto timer = Timer();
+
 		while (!window.shouldClose())
 		{
 			window.pollEvents();
 			window.clearBuffer();
 			timer.update();
-			camera.update(timer.getDeltaTime());
+			camera.update(timer.getDeltaTime(),figureSh);
+			lamp.update(timer.getDeltaTime());
+			lamp.draw(perspective.getTrans(camera.getView()));
 			for (std::unique_ptr<Figure>& f : figures)
 			{
 				f->update( timer.getDeltaTime());

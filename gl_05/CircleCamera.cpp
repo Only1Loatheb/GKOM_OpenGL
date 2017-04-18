@@ -2,17 +2,17 @@
 
 CircleCamera::CircleCamera(GLfloat r, GLfloat h)
 	:Camera(),
-	rotation(glm::mat4())
-{
-	radius = r;
-	height = h;
-}
+	startingPos(cameraPos),
+	rotation(glm::mat4()),
+	radius(r),
+	height(h)
+{}
 
 CircleCamera::~CircleCamera()
 {
 }
 
-void CircleCamera::update(GLfloat dt)
+void CircleCamera::update(GLfloat dt, std::shared_ptr<ShaderProgram>& program)
 {	
 	GLfloat speed = 0;
 	if (Controller::iKBP(GLFW_KEY_A))
@@ -20,5 +20,7 @@ void CircleCamera::update(GLfloat dt)
 	if (Controller::iKBP(GLFW_KEY_D))
 		speed += 100.0f;
 	rotation = glm::rotate(rotation, glm::radians(dt * speed), up);
-	view = glm::lookAt(glm::vec3(rotation * glm::vec4(cameraPos, 1.0f)) , cameraTarget, up);
+	cameraPos = glm::vec3(rotation * glm::vec4(startingPos, 1.0f));
+	view = glm::lookAt(cameraPos, cameraTarget, up);
+	Camera::addCametaPosToSh(program);
 }

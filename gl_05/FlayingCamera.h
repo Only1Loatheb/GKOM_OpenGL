@@ -6,7 +6,7 @@ class FlayingCamera: public Camera
 public:
 	FlayingCamera();
 	~FlayingCamera();
-	virtual void update(GLfloat);
+	void update(GLfloat, std::shared_ptr<ShaderProgram>&) override;
 private:
 	glm::vec3 cameraFront;
 	GLfloat cameraSpeed;

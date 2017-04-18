@@ -11,7 +11,7 @@ FlayingCamera::~FlayingCamera()
 {
 }
 
-void FlayingCamera::update(GLfloat dt)
+void FlayingCamera::update(GLfloat dt, std::shared_ptr<ShaderProgram>& program)
 {
 	cameraSpeed = 5.0f * dt;
 
@@ -25,4 +25,5 @@ void FlayingCamera::update(GLfloat dt)
 		cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
 
 	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	Camera::addCametaPosToSh(program);
 }
