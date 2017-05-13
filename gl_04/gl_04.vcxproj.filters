@@ -21,10 +21,22 @@
     <ClCompile Include="shprogram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="gl_04.frag" />
     <None Include="gl_04.vert" />
+    <None Include="light.frag">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="light.vert">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png">
@@ -36,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shprogram.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,13 +17,14 @@ Lamp::~Lamp()
 
 void Lamp::draw(const glm::mat4& perspective) const
 {
-	Figure::draw(perspective);
-	glm::vec4 lightPos =  local * glm::vec4(1.0);//glm::vec4(lightPosition, 1.0);
+	glm::vec4 lightPos = local * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);//glm::vec4(lightPosition, 1.0);
 	GLint lightPosLoc = glGetUniformLocation(shader->getProgramID(), "lightPos");
 	glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
 
 	GLint lightColorLoc = glGetUniformLocation(shader->getProgramID(), "lightColor");
 	glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f);
+
+	Figure::draw(perspective);
 }
 
 void Lamp::update(GLfloat dt)

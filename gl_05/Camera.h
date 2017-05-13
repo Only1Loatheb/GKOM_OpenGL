@@ -14,7 +14,7 @@ public:
 	~Camera();
 	const glm::mat4& getView() const;
 	virtual void update(GLfloat dt , std::shared_ptr<ShaderProgram>& program) = 0;
-	void addCametaPosToSh(std::shared_ptr<ShaderProgram>&) const;
+	void addCameraPosToSh(std::shared_ptr<ShaderProgram>&) const;
 protected:
 	glm::vec3 cameraPos;
 	glm::vec3 cameraTarget;

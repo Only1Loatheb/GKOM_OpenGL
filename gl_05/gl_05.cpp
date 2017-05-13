@@ -19,7 +19,7 @@ int main()
 		Window window(WIDTH, HEIGHT, &Controller::key_callback, "moje okienko <3");		
 		auto figureSh = make_shared<ShaderProgram>("figure.vert", "figure.frag");
 		auto box = make_shared<Shape>();
-		auto weiti = make_shared<Texture>(GL_TEXTURE0, "weiti.png");
+		auto weiti = make_shared<Texture>(GL_TEXTURE0, "white.png");
 		auto metal = make_shared<Texture>(GL_TEXTURE0, "metal.png");
 		auto figures = std::vector<std::unique_ptr<Figure>>();
 		figures.push_back(std::move(std::make_unique<Figure>(figureSh, box, metal))); //dynamic_cast<Figure>();
@@ -35,6 +35,7 @@ int main()
 			window.clearBuffer();
 			timer.update();
 			camera.update(timer.getDeltaTime(),figureSh);
+			figureSh->use();
 			lamp.update(timer.getDeltaTime());
 			lamp.draw(perspective.getTrans(camera.getView()));
 			for (std::unique_ptr<Figure>& f : figures)
@@ -50,6 +51,8 @@ int main()
 	catch (std::exception ex)
 	{
 		std::cout << ex.what() << std::endl;
+		int i;
+		std::cin >> i;
 	}
 	return 0;
 }

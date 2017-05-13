@@ -70,6 +70,12 @@
     <Image Include="metal.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="white.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="colors.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shprogram.h">
