@@ -8,7 +8,7 @@
 class Figure
 {
 public:
-	Figure(shared_ptr<ShaderProgram>& , shared_ptr<Shape>& , shared_ptr<Texture>& );
+	Figure(shared_ptr<ShaderProgram>& , shared_ptr<Shape> , shared_ptr<Texture>& );
 	~Figure();
 	glm::mat4 getLocalMat() const;
 	virtual void draw(const glm::mat4&) const;

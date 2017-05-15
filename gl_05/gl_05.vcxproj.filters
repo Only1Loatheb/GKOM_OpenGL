@@ -54,11 +54,21 @@
     <ClCompile Include="Lamp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SceneElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="lamp.vert" />
     <None Include="figure.vert" />
     <None Include="figure.frag" />
+    <None Include="basic.frag" />
+    <None Include="basic.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="iipw.png">
@@ -74,6 +84,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="colors.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="skybox.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -112,6 +125,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Lamp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,10 @@
 #include "CircleCamera.h"
 
-CircleCamera::CircleCamera(GLfloat r, GLfloat h)
-	:Camera()
+CircleCamera::CircleCamera(GLfloat r, GLfloat h, GLfloat minr, GLfloat maxr,
+	GLfloat minh,	GLfloat maxh)
+	:Camera(), radius(r),height(h), minR(minr), maxR(maxr),	minH(minH),
+	maxH(maxh)
 {
-	radius = r;
-	height = h;
 	cameraPos = glm::vec3(r, h, 0.0f);
 	zero = glm::vec3(0.0f);
 	rotation = 0;
@@ -40,16 +40,16 @@ void CircleCamera::update(GLfloat dt, std::shared_ptr<ShaderProgram>& program)
 		rotation += 360;
 
 	radius += dt * aproachingSpeed;
-	if (radius < SCENE_MIN_RADIUS)
-		radius = SCENE_MIN_RADIUS;
-	else if (radius > SCENE_MAX_RADIUS)
-		radius = SCENE_MAX_RADIUS;
+	if (radius < minR)
+		radius = minR;
+	else if (radius > maxR)
+		radius = maxR;
 
 	height += dt * liftingSpeed;
-	if (height < SCENE_MIN_HEIGHT)
-		height = SCENE_MIN_HEIGHT;
-	else if (height > SCENE_MAX_HEIGHT)
-		height = SCENE_MAX_HEIGHT;
+	if (height < minH)
+		height = minH;
+	else if (height > maxH)
+		height = maxH;
 
 	auto local = glm::mat4();
 	local = glm::rotate(local, glm::radians(rotation), up);

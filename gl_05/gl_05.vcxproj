@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Box.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CircleCamera.cpp" />
     <ClCompile Include="Controller.cpp" />
@@ -158,9 +159,11 @@
     <ClCompile Include="Lamp.cpp" />
     <ClCompile Include="Perspective.cpp" />
     <ClCompile Include="Figure.cpp" />
+    <ClCompile Include="SceneElement.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="gl_05.cpp" />
     <ClCompile Include="shprogram.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -168,16 +171,19 @@
   <ItemGroup>
     <None Include="figure.frag" />
     <None Include="figure.vert" />
-    <None Include="lamp.vert" />
+    <None Include="basic.frag" />
+    <None Include="basic.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="colors.png" />
     <Image Include="iipw.png" />
     <Image Include="metal.png" />
+    <Image Include="skybox.jpg" />
     <Image Include="weiti.png" />
     <Image Include="white.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Box.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CircleCamera.h" />
     <ClInclude Include="Controller.h" />
@@ -185,8 +191,10 @@
     <ClInclude Include="Lamp.h" />
     <ClInclude Include="Perspective.h" />
     <ClInclude Include="Figure.h" />
+    <ClInclude Include="SceneElement.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="shprogram.h" />
+    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />

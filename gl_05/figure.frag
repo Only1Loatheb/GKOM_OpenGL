@@ -1,8 +1,5 @@
 #version 330 core
 
-#define ambientStrength 0.1f
-#define specularStrength 0.5f
-
 in vec3 fragPos;
 in vec3 vecNormal;
 in vec2 TexCoord;
@@ -13,6 +10,9 @@ uniform sampler2D Texture0;
 uniform vec3 lightPos;
 uniform vec3 lightColor;
 uniform vec3 viewPos;
+
+#define ambientStrength 0.1f
+#define specularStrength 0.5f
 
 void main()
 {

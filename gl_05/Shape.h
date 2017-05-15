@@ -1,5 +1,8 @@
 #pragma once
 #include <GL/glew.h>
+#include <glm/glm.hpp> // GLM handles matrix mathematics
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -11,13 +14,11 @@ public:
 	~Shape();
 	void draw() const;
 protected:
-	virtual GLfloat* getVertices() const;
-	virtual GLuint* getIndices() const;
+	GLfloat* getVertices() const;
+	GLuint* getIndices() const;
 	GLsizeiptr sizeofVertices() const;
 	GLsizeiptr sizeofIndices() const;
 	GLsizei countofIndices() const;
-
-	void Shape::calcNormalVec(vector<GLfloat>&);
 
 	GLsizei vertexAtributesCount;
 	GLsizei verticesCount;
