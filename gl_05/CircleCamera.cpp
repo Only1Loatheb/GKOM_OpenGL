@@ -2,7 +2,7 @@
 
 CircleCamera::CircleCamera(GLfloat r, GLfloat h, GLfloat minr, GLfloat maxr,
 	GLfloat minh,	GLfloat maxh)
-	:Camera(), radius(r),height(h), minR(minr), maxR(maxr),	minH(minH),
+	:Camera(), radius(r),height(h), minR(minr), maxR(maxr),	minH(minh),
 	maxH(maxh)
 {
 	cameraPos = glm::vec3(r, h, 0.0f);

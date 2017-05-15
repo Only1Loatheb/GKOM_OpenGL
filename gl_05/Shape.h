@@ -20,6 +20,8 @@ protected:
 	GLsizeiptr sizeofIndices() const;
 	GLsizei countofIndices() const;
 
+	void bindVAO();
+
 	GLsizei vertexAtributesCount;
 	GLsizei verticesCount;
 	GLsizei indicesCount;

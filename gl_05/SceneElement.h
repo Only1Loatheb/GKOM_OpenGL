@@ -3,7 +3,7 @@
 class SceneElement :public Figure 
 {
 public:
-	SceneElement(shared_ptr<ShaderProgram>&, shared_ptr<Shape>, shared_ptr<Texture>&);
+	SceneElement(shared_ptr<ShaderProgram>&, shared_ptr<Shape>, shared_ptr<Texture>&, glm::mat4);
 	~SceneElement();
 
 	void draw(const glm::mat4&) const override;

@@ -163,7 +163,6 @@
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="gl_05.cpp" />
     <ClCompile Include="shprogram.cpp" />
-    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -179,6 +178,7 @@
     <Image Include="iipw.png" />
     <Image Include="metal.png" />
     <Image Include="skybox.jpg" />
+    <Image Include="Skybox_example.png" />
     <Image Include="weiti.png" />
     <Image Include="white.png" />
   </ItemGroup>
@@ -194,7 +194,6 @@
     <ClInclude Include="SceneElement.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="shprogram.h" />
-    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />

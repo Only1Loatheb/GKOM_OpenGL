@@ -2,9 +2,10 @@
 
 
 
-SceneElement::SceneElement(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh, shared_ptr<Texture>& tex)
+SceneElement::SceneElement(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh, shared_ptr<Texture>& tex, glm::mat4 l)
 	:Figure(program, mesh, tex)
 {
+	local = l;
 }
 
 

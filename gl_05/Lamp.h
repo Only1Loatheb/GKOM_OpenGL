@@ -4,7 +4,7 @@
 class Lamp :public Figure 
 {
 public:
-	Lamp(shared_ptr<ShaderProgram>&, shared_ptr<Shape>, shared_ptr<Texture>&);
+	Lamp(shared_ptr<ShaderProgram>&, shared_ptr<Shape>, shared_ptr<Texture>&, glm::mat4 );
 	~Lamp();
 	void draw(const glm::mat4&) const override;
 	void update(GLfloat) override;

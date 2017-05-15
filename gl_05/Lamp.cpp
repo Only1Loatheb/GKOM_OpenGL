@@ -2,13 +2,12 @@
 
 
 
-Lamp::Lamp(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh, shared_ptr<Texture>& tex)
+Lamp::Lamp(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh, shared_ptr<Texture>& tex, glm::mat4 l)
 	:Figure(program, mesh, tex),
 	speed(100.0f),
 	lightColor(glm::vec3(1.0f, 1.0f, 1.0f))
 {
-	local = glm::translate(local,glm::vec3(-1.2f, -1.0f, -2.0f));
-	local = glm::scale(local, glm::vec3(0.2f));
+	local = l;
 }
 
 
