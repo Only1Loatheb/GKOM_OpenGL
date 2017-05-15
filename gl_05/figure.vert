@@ -9,12 +9,12 @@ out vec3 vecNormal;
 out vec2 TexCoord;
   
 uniform mat4 transform; //mamy zmienna z macierza translacji
-uniform mat4 local;
-uniform mat3 inverted;
+uniform mat4 inverted;  //macierz do translacji normallnych  
 void main()
 {
-    fragPos = (local * vec4(position, 1.0f)).xyz;
-	vecNormal = inverted * normal;
-    TexCoord = texCoord;
-	gl_Position = transform * vec4(position, 1.0f);  //tu jedno mnozenie
+    gl_Position = transform * vec4(position, 1.0f);  //tu jedno mnozenie
+	fragPos = gl_Position.xyz; // (transform * vec4(position, 1.0f)).xyz;
+    vecNormal = (inverted * vec4(normal, 1.0f)).xyz; //vecNormal = inverted * normal;
+	TexCoord = texCoord;
+	
 } 

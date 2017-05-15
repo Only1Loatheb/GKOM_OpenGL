@@ -152,12 +152,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera1.cpp" />
+    <ClCompile Include="Controller1.cpp" />
     <ClCompile Include="gl_04.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="shprogram.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="gl_04.frag" />
+    <None Include="gl_04.frag">
+      <FileType>CppCode</FileType>
+      <DeploymentContent>false</DeploymentContent>
+    </None>
     <None Include="gl_04.vert" />
     <None Include="light.frag" />
     <None Include="light.vert" />
@@ -168,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera1.h" />
+    <ClInclude Include="Controller1.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="shprogram.h" />
   </ItemGroup>
