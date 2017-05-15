@@ -31,17 +31,17 @@ void Lamp::update(GLfloat dt)
 {
 	glm::vec3 translation;
 	GLfloat speed = 10.0f;
-	if (Controller::iKBP(GLFW_KEY_I))
+	if (Controller::iKBP(GLFW_KEY_O))
+		translation.y += dt * speed;
+	if (Controller::iKBP(GLFW_KEY_U))
 		translation.y -= dt * speed;
 	if (Controller::iKBP(GLFW_KEY_K))
-		translation.y += dt * speed;
-	if (Controller::iKBP(GLFW_KEY_J))
-		translation.x -= dt * speed;
-	if (Controller::iKBP(GLFW_KEY_L))
 		translation.x += dt * speed;
-	if (Controller::iKBP(GLFW_KEY_U))
+	if (Controller::iKBP(GLFW_KEY_I))
+		translation.x -= dt * speed;
+	if (Controller::iKBP(GLFW_KEY_J))
 		translation.z += dt * speed;
-	if (Controller::iKBP(GLFW_KEY_O))
+	if (Controller::iKBP(GLFW_KEY_L))
 		translation.z -= dt * speed;
 	local = glm::translate(local, translation);
 }

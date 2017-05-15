@@ -20,13 +20,16 @@ glm::mat4  Figure::getLocalMat() const
 void Figure::draw(const glm::mat4& perspective) const
 {
 
+	GLuint modelLoc = glGetUniformLocation(getProgramID(), "model");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, value_ptr(local)); //wrzucamy macierz na karte graficzna do programu szejdera XDDDDDD
+
 	glm::mat4 transform = perspective * local;
 	GLuint transformLoc = glGetUniformLocation(getProgramID(), "transform");
 	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, value_ptr(transform)); //wrzucamy macierz na karte graficzna do programu szejdera XDDDDDD
 
-	glm::mat4 inverted = transpose(inverse(transform));
-	GLuint transposedLoc = glGetUniformLocation(getProgramID(), "inverted");
-	glUniformMatrix4fv(transposedLoc, 1, GL_FALSE, value_ptr(inverted));
+	glm::mat3 inversed = glm::mat3(transpose(inverse(local)));
+	GLuint transposedLoc = glGetUniformLocation(getProgramID(), "inversed");
+	glUniformMatrix3fv(transposedLoc, 1, GL_FALSE, value_ptr(inversed));
 
 	texture->bind();
 	shader->acceptTexture();

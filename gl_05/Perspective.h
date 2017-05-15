@@ -15,5 +15,5 @@ public:
 	glm::mat4 getTrans(const glm::mat4&)const;
 private:
 	glm::mat4 proj;
-	glm::mat4 model;
+	//glm::mat4 model;
 };
