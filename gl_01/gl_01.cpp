@@ -4,7 +4,7 @@
 #include "Window.h"
 #include "Controller.h"
 #include "Mesh.h"
-#include "saw.h"
+//#include "saw1.h"
 #include "Shaders.h"
 
 static const GLuint WIDTH = 800;
@@ -19,8 +19,8 @@ int main()
 
 		Controller c;
 		Window w(WIDTH, HEIGHT, Controller::key_callback, std::string("moje okienko <3"));
-		Saw saw;
-		Mesh sawMesh(saw.vertices, saw.numVertices, saw.indices, saw.numIndices);
+		//Saw1 saw;
+		//Mesh sawMesh(saw.vertices, saw.numVertices, saw.indices, saw.numIndices);
 		Shaders s;
 		// main loop
 		while (!w.shouldClose())
@@ -32,7 +32,7 @@ int main()
 			glfwPollEvents();
 			w.clearScreen();
 			s.use();
-			sawMesh.draw();
+			//sawMesh.draw();
 
 			w.swapBuffers();
 		}

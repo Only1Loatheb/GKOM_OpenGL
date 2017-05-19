@@ -153,7 +153,6 @@
     <ClCompile Include="FragmentShader.cpp" />
     <ClCompile Include="gl_01.cpp" />
     <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="saw.cpp" />
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="VertexShader.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -162,7 +161,6 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="FragmentShader.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="saw.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="VertexShader.h" />
     <ClInclude Include="Window.h" />

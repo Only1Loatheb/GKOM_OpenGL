@@ -2,7 +2,12 @@
  
 
 Shape::Shape()
-{}
+{
+	vertexAtributesCount = 8;
+	indicesInTriangle = 3;
+	vertices = vector<GLfloat>();
+	indices = vector<GLuint>();
+}
 
 
 Shape::~Shape()
@@ -12,28 +17,33 @@ Shape::~Shape()
 	glDeleteBuffers(1, &EBO);
 }
 
-GLfloat* Shape::getVertices() const
+GLfloat* Shape::getVerticesAdress() const
 {
 	return (GLfloat*)&vertices[0];
 }
-GLuint* Shape::getIndices() const
+GLuint* Shape::getIndicesAdress() const
 {
 	return (GLuint*)&indices[0];
 }
 
-GLsizeiptr Shape::sizeofVertices() const
+GLsizeiptr Shape::sizeOfVertices() const
 {
-	return sizeof(GLfloat) * verticesCount;
+	return sizeof(GLfloat) * vertices.size();
 }
 
-GLsizeiptr Shape::sizeofIndices() const
+GLsizeiptr Shape::sizeOfIndices() const
 {
-	return sizeof(GLuint) * indicesCount;
+	return sizeof(GLuint) * indices.size();
 }
 
-GLsizei Shape::countofIndices() const
+GLsizei Shape::countOfTriangles() const
 {
-	return indicesCount;
+	return indices.size() / indicesInTriangle;
+}
+
+GLsizei Shape::countOfVertices() const
+{
+	return vertices.size() / vertexAtributesCount;
 }
 
 void Shape::bindVAO()
@@ -46,10 +56,10 @@ void Shape::bindVAO()
 	glBindVertexArray(VAO);
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeofVertices(), getVertices(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeOfVertices(), getVerticesAdress(), GL_STATIC_DRAW);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeofIndices(), getIndices(), GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeOfIndices(), getIndicesAdress(), GL_STATIC_DRAW);
 
 	// vertex geometry data
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
@@ -69,11 +79,56 @@ void Shape::bindVAO()
 
 }
 
+
 void Shape::draw() const
 {
 	glBindVertexArray(VAO);
-	glDrawElements(GL_TRIANGLES, countofIndices(), GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }
 
+GLsizei Shape::getVertexAtributesCount() const
+{
+	return vertexAtributesCount;
+}
 
+
+glm::vec3 Shape::calcNormalVec(const glm::vec3 & p1, const glm::vec3 & p2, const glm::vec3 & p3)
+{
+	return glm::cross(p2 - p1, p3 - p1);
+}
+
+void Shape::saveVertexToVector(const glm::vec3 & pos, const glm::vec3 & norm, const glm::vec2 & tex)
+{
+	vertices.push_back(pos.x);
+	vertices.push_back(pos.y);
+	vertices.push_back(pos.z);
+	vertices.push_back(norm.x);
+	vertices.push_back(norm.y);
+	vertices.push_back(norm.z);
+	vertices.push_back(tex.x);
+	vertices.push_back(tex.y);
+	//memcpy(&v[index], &normal.x, sizeOf3Floats);
+}
+
+void Shape::saveIndicesToVector(const GLuint & i1, const GLuint & i2, const GLuint & i3)
+{
+	indices.push_back(i1);
+	indices.push_back(i2);
+	indices.push_back(i3);
+}
+
+void Shape::setVertices(const vector<GLfloat>&& v)
+{
+	vertices = std::move(v);
+}
+
+vector<GLfloat>& Shape::getVertices()
+{
+	return vertices;
+}
+
+vector<GLuint>& Shape::getIndices()
+{
+	return indices;
+}

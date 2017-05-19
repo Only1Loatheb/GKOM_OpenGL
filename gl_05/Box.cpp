@@ -5,63 +5,60 @@ Box::Box()
 {
 	GLfloat _0_33 = 1.0f / 3.0f;
 	GLfloat _0_66 =  2.0f / 3.0f;
-	vertexAtributesCount = 8;
-	verticesCount = 24 * vertexAtributesCount;
+	verticesCount = 8 * 6 * 4;
 	indicesCount = 12 * 3;
-	vertices = vector<GLfloat>{
+	setVertices(vector<GLfloat>{
 		// coordinates			// normal			// texture
 		//up
-		-0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.5f,  _0_33,
-		0.5f,  0.5f, -0.5f,	    0.0f, 0.0f, 0.0f,	0.25f,  0.0f,
-		0.5f,  0.5f,  0.5f,  	0.0f, 0.0f, 0.0f,	0.25f,  _0_33,
-		-0.5f,  0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.5f,  0.0f,
-		//down
-		-0.5f, -0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.5f, _0_66,
-		0.5f, -0.5f, -0.5f,	    0.0f, 0.0f, 0.0f,	0.25f, 1.0f,
-		-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.5f, 1.0f,
-		0.5f, -0.5f,  0.5f,	    0.0f, 0.0f, 0.0f,	0.25f, _0_66,
-		//right
-		-0.5f,  0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.75f, _0_33,
-		0.5f, -0.5f, -0.5f,  	0.0f, 0.0f, 0.0f,	1.0f, _0_66,
-		0.5f,  0.5f, -0.5f, 	0.0f, 0.0f, 0.0f,	1.0f, _0_33,
-		-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.75f, _0_66,
-		//left
-		-0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.5f, _0_33,
-		0.5f, -0.5f,  0.5f, 	0.0f, 0.0f, 0.0f,	0.25f, _0_66,
-		-0.5f, -0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.5f, _0_66,
-		0.5f,  0.5f,  0.5f, 	0.0f, 0.0f, 0.0f,	0.25f, _0_33,
-		//back
-		-0.5f, -0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.5f,  _0_66,
-		-0.5f,  0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.75f, _0_33,
-		-0.5f,  0.5f,  0.5f,	0.0f, 0.0f, 0.0f,	0.5f, _0_33,
-		-0.5f, -0.5f, -0.5f,	0.0f, 0.0f, 0.0f,	0.75f,  _0_66,
-		//front
-		0.5f, -0.5f,  0.5f, 	0.0f, 0.0f, 0.0f,	0.25f, _0_66,
-		0.5f,  0.5f, -0.5f,	    0.0f, 0.0f, 0.0f,	0.0f, _0_33,
-		0.5f, -0.5f, -0.5f, 	0.0f, 0.0f, 0.0f,	0.0f, _0_66,
-		0.5f,  0.5f,  0.5f, 	0.0f, 0.0f, 0.0f,	0.25f, _0_33,
-		};
+		-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_33,
+			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.25f, 0.0f,
+			0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+			-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f,
+			//down
+			-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_66,
+			0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.25f, 1.0f,
+			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 1.0f,
+			0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+			//right
+			-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
+			0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, _0_66,
+			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, _0_33,
+			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
+			//left
+			-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_33,
+			0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+			-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_66,
+			0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+			//back
+			-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_66,
+			-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
+			-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_33,
+			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
+			//front
+			0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, _0_33,
+			0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, _0_66,
+			0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+	});
 
-	calcNormalVec(vertices);
+	calcNormalVec(getVertices());
 
-	
-	#pragma region showNormals 
-	auto vAC4 = 4 * vertexAtributesCount;;
-	for (int i = 0; i < verticesCount; i += vAC4)
+	/*
+	auto vAC4 = 4 * getVertexAtributesCount();
+	for (int i = 0; i < getVertices().size(); i += vAC4)
 	{
-	cout << vertices[i + 3] << " " << vertices[i + 4] << " " << vertices[i + 5] << endl;
+	cout << getVertices()[i + 3] << " " << getVertices()[i + 4] << " " << getVertices()[i + 5] << endl;
 	}
-	#pragma endregion
+	*/
 	
-	indices = vector<GLuint>();
 	for (int i = 0; i < indicesCount; i += 4)
 	{
-		indices.push_back(i);
-		indices.push_back(i + 1);
-		indices.push_back(i + 2);
-		indices.push_back(i + 1);
-		indices.push_back(i);
-		indices.push_back(i + 3);
+		getIndices().push_back(i);
+		getIndices().push_back(i + 1);
+		getIndices().push_back(i + 2);
+		getIndices().push_back(i + 1);
+		getIndices().push_back(i);
+		getIndices().push_back(i + 3);
 	}
 	bindVAO();
 }
@@ -73,12 +70,12 @@ Box::~Box()
 
 void Box::calcNormalVec(vector<GLfloat>& v)
 {
-	auto vAC = vertexAtributesCount;
+	auto vAC = getVertexAtributesCount();
 	auto vAC2 = 2 * vAC;
 	auto vAC3 = 3 * vAC;
 	auto vAC4 = 4 * vAC;
 	auto sizeOf3Floats = sizeof(GLfloat) * 3;
-	for (int i = 0; i < verticesCount; i += vAC4)
+	for (int i = 0; i < getVertices().size(); i += vAC4)
 	{
 		glm::vec3 p1 = glm::make_vec3(&v[i]);
 		glm::vec3 p2 = glm::make_vec3(&v[i + vAC]);

@@ -14,19 +14,31 @@ public:
 	~Shape();
 	void draw() const;
 protected:
-	GLfloat* getVertices() const;
-	GLuint* getIndices() const;
-	GLsizeiptr sizeofVertices() const;
-	GLsizeiptr sizeofIndices() const;
-	GLsizei countofIndices() const;
-
+	//OpenGL
+	GLfloat* getVerticesAdress() const;
+	GLuint* getIndicesAdress() const;
+	GLsizeiptr sizeOfVertices() const;
+	GLsizeiptr sizeOfIndices() const;
 	void bindVAO();
-
+	//utils
+	glm::vec3 calcNormalVec(const glm::vec3&, const glm::vec3&, const glm::vec3 &);
+	void saveVertexToVector(const glm::vec3&, const glm::vec3&, const glm::vec2&);
+	void saveIndicesToVector(const GLuint&, const GLuint&, const GLuint&);
+	//used in cylinder
+	GLsizei countOfTriangles() const;
+	GLsizei countOfVertices() const;
+	//used in box, not good practise
+	GLsizei getVertexAtributesCount() const;
+	void setVertices(const vector<GLfloat>&&); 
+	vector<GLfloat>& getVertices(); 
+	vector<GLuint>& getIndices(); 
+private:
 	GLsizei vertexAtributesCount;
-	GLsizei verticesCount;
-	GLsizei indicesCount;
+	GLsizei indicesInTriangle;
+	GLuint VBO;
+	GLuint EBO;
+	GLuint VAO;
 	vector<GLfloat> vertices;
 	vector<GLuint> indices;
-	GLuint VBO, EBO, VAO;
-	//virtual void init();
+
 };
