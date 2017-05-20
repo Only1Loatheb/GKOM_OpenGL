@@ -23,7 +23,7 @@ void Lamp::draw(const glm::mat4& perspective) const
 
 void Lamp::update(GLfloat dt)
 {
-	glm::vec3 translation;
+	glm::vec3 translation(.0f);
 	GLfloat speed = 10.0f;
 	if (Controller::iKBP(GLFW_KEY_O))
 		translation.y += dt * speed;

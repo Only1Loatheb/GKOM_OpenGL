@@ -2,8 +2,9 @@
 
 
 
-SceneElement::SceneElement(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh, shared_ptr<Texture>& tex, glm::mat4 l)
-	:Figure(program, mesh, tex)
+SceneElement::SceneElement(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh, 
+	shared_ptr<Texture>& tex, glm::mat4 l, unique_ptr<Animation> anim)
+	:Figure(program, mesh, tex, std::move(anim))
 {
 	local = l;
 }
@@ -27,6 +28,3 @@ void SceneElement::draw(const glm::mat4 &perspective) const
 	Figure::draw(perspective);
 }
 
-void SceneElement::update(GLfloat dt)
-{
-}

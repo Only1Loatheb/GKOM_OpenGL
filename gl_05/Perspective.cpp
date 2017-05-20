@@ -10,8 +10,8 @@ Perspective::~Perspective()
 {
 }
 
-glm::mat4 Perspective::getTrans(const glm::mat4& view) const
+glm::mat4 Perspective::getTransformationMatrix(const glm::mat4& view) const
 {
-	return proj * view;// *model;
+	return proj * view;
 }
 

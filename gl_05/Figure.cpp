@@ -1,8 +1,10 @@
 #include "Figure.h"
-Figure::Figure(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh, shared_ptr<Texture>& tex)
+Figure::Figure(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh, 
+	shared_ptr<Texture>& tex, unique_ptr<Animation> anim)
 	:shader(program),
 	shape(mesh),
 	texture(tex),
+	animation(std::move(anim)),
 	local(glm::mat4()),
 	startingLocal(local)
 {}
@@ -33,5 +35,10 @@ GLuint Figure::getProgramID() const
 	return shader->getProgramID();
 }
 
-void Figure::update(GLfloat)
-{}
+void Figure::update(GLfloat dt)
+{	
+	if (animation) 
+	{
+		animation->animate(local, dt);
+	}
+}

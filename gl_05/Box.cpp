@@ -2,11 +2,18 @@
 
 
 Box::Box(GLfloat side)
+: Box(side, side, side)
 {
-	this->halfSide = side / 2.0f;
+}
+
+Box::Box(GLfloat x, GLfloat y, GLfloat z)
+{
+	this->halfX = x / 2.0f;
+	this->halfY = y / 2.0f;
+	this->halfZ = z / 2.0f;
 	verticesCount = 8 * 6 * 4;
 	indicesCount = 12 * 3;
-	
+
 	addVertices();
 	calcNormalVec(getVertices());
 	addIndices();
@@ -26,35 +33,35 @@ void Box::addVertices()
 	setVertices(vector<GLfloat>{
 		// coordinates			// normal			// texture
 		//up
-		-halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
-			halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.25f, 0.0f,
-			halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
-			-halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, _O_5, 0.0f,
-			//down
-			-halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
-			halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.25f, 1.0f,
-			-halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, _O_5, 1.0f,
-			halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
-			//right
-			-halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
-			halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 1.0f, _0_66,
-			halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 1.0f, _0_33,
-			-halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
-			//left
-			-halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
-			halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
-			-halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
-			halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
-			//back
-			-halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
-			-halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
-			-halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
-			-halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
-			//front
-			halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
-			halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.0f, _0_33,
-			halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.0f, _0_66,
-			halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+		-halfX, halfY, halfZ, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
+		halfX, halfY, -halfZ, 0.0f, 0.0f, 0.0f, 0.25f, 0.0f,
+		halfX, halfY, halfZ, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+		-halfX, halfY, -halfZ, 0.0f, 0.0f, 0.0f, _O_5, 0.0f,
+		//down
+		-halfX, -halfY, halfZ, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
+		halfX, -halfY, -halfZ, 0.0f, 0.0f, 0.0f, 0.25f, 1.0f,
+		-halfX, -halfY, -halfZ, 0.0f, 0.0f, 0.0f, _O_5, 1.0f,
+		halfX, -halfY, halfZ, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+		//right
+		-halfX, halfY, -halfZ, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
+		halfX, -halfY, -halfZ, 0.0f, 0.0f, 0.0f, 1.0f, _0_66,
+		halfX, halfY, -halfZ, 0.0f, 0.0f, 0.0f, 1.0f, _0_33,
+		-halfX, -halfY, -halfZ, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
+		//left
+		-halfX, halfY, halfZ, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
+		halfX, -halfY, halfZ, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+		-halfX, -halfY, halfZ, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
+		halfX, halfY, halfZ, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+		//back
+		-halfX, -halfY, halfZ, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
+		-halfX, halfY, -halfZ, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
+		-halfX, halfY, halfZ, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
+		-halfX, -halfY, -halfZ, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
+		//front
+		halfX, -halfY, halfZ, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+		halfX, halfY, -halfZ, 0.0f, 0.0f, 0.0f, 0.0f, _0_33,
+		halfX, -halfY, -halfZ, 0.0f, 0.0f, 0.0f, 0.0f, _0_66,
+		halfX, halfY, halfZ, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
 	});
 }
 

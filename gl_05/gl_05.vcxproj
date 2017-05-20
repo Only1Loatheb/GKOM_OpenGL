@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CircleCamera.cpp" />
@@ -162,11 +163,13 @@
     <ClCompile Include="Perspective.cpp" />
     <ClCompile Include="Figure.cpp" />
     <ClCompile Include="SawBlade.cpp" />
+    <ClCompile Include="SawingAnimation.cpp" />
     <ClCompile Include="SceneElement.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="gl_05.cpp" />
     <ClCompile Include="shprogram.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="SplitingAnimation.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -187,6 +190,7 @@
     <Image Include="white.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Box.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CircleCamera.h" />
@@ -198,10 +202,12 @@
     <ClInclude Include="Perspective.h" />
     <ClInclude Include="Figure.h" />
     <ClInclude Include="SawBlade.h" />
+    <ClInclude Include="SawingAnimation.h" />
     <ClInclude Include="SceneElement.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="shprogram.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="SplitingAnimation.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />
