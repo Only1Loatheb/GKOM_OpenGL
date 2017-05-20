@@ -40,5 +40,4 @@ private:
 	GLuint VAO;
 	vector<GLfloat> vertices;
 	vector<GLuint> indices;
-
 };

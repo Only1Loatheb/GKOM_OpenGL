@@ -4,7 +4,7 @@
 class SawBlade :public Shape
 {
 public:
-	SawBlade();
+	SawBlade(GLfloat l,	GLuint nOfteeth,GLfloat toothW,GLfloat tootH,GLfloat toothS);
 	~SawBlade();
 private:
 	void addTriangle1();
@@ -22,10 +22,10 @@ private:
 
 	GLfloat fullLength;
 	GLuint	numberOfteeth;
-	GLfloat toothLength;
 	GLfloat toothWidth;
 	GLfloat toothHeight;
 	GLfloat toothSet;
+	GLfloat toothLength;
 	GLsizei verricesInTooth;
 	GLsizei trianglesInTooth;
 	GLfloat halfLength;

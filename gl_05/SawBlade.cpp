@@ -1,15 +1,15 @@
 #include "SawBlade.h"
 
-SawBlade::SawBlade()
+SawBlade::SawBlade(GLfloat l, GLuint nOfteeth, GLfloat toothW, GLfloat tootH, GLfloat toothS)
 {
 	// changable values 
-	this->fullLength = 4.0f;
-	this->numberOfteeth = 5;
-	this->toothWidth = 0.2f;
-	this->toothHeight = 0.4f;
-	this->toothSet = 0.1f;
-	this->baseHeight = 0.0f;
+	this->fullLength = l;
+	this->numberOfteeth = nOfteeth;
+	this->toothWidth = toothW;
+	this->toothHeight = tootH;
+	this->toothSet = toothS;
 	// additional helping values
+	this->baseHeight = 0.0f;
 	this->verricesInTooth = 10;
 	this->toothLength = fullLength / numberOfteeth;
 	this->halfToothLength = toothLength / 2.0f;

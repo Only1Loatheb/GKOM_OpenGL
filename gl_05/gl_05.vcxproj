@@ -155,6 +155,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CircleCamera.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="FlayingCamera.cpp" />
     <ClCompile Include="HalfLog.cpp" />
     <ClCompile Include="Lamp.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CircleCamera.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="Cylinder.h" />
     <ClInclude Include="FlayingCamera.h" />
     <ClInclude Include="HalfLog.h" />
     <ClInclude Include="Lamp.h" />

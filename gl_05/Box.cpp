@@ -1,71 +1,70 @@
 #include "Box.h"
 
 
-Box::Box()
+Box::Box(GLfloat side)
 {
-	GLfloat _0_33 = 1.0f / 3.0f;
-	GLfloat _0_66 =  2.0f / 3.0f;
+	this->halfSide = side / 2.0f;
 	verticesCount = 8 * 6 * 4;
 	indicesCount = 12 * 3;
-	setVertices(vector<GLfloat>{
-		// coordinates			// normal			// texture
-		//up
-		-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_33,
-			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.25f, 0.0f,
-			0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
-			-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f,
-			//down
-			-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_66,
-			0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.25f, 1.0f,
-			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 1.0f,
-			0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
-			//right
-			-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
-			0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, _0_66,
-			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, _0_33,
-			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
-			//left
-			-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_33,
-			0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
-			-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_66,
-			0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
-			//back
-			-0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_66,
-			-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
-			-0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.5f, _0_33,
-			-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
-			//front
-			0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
-			0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, _0_33,
-			0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f, _0_66,
-			0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
-	});
-
-	calcNormalVec(getVertices());
-
-	/*
-	auto vAC4 = 4 * getVertexAtributesCount();
-	for (int i = 0; i < getVertices().size(); i += vAC4)
-	{
-	cout << getVertices()[i + 3] << " " << getVertices()[i + 4] << " " << getVertices()[i + 5] << endl;
-	}
-	*/
 	
-	for (int i = 0; i < indicesCount; i += 4)
-	{
-		getIndices().push_back(i);
-		getIndices().push_back(i + 1);
-		getIndices().push_back(i + 2);
-		getIndices().push_back(i + 1);
-		getIndices().push_back(i);
-		getIndices().push_back(i + 3);
-	}
+	addVertices();
+	calcNormalVec(getVertices());
+	addIndices();
 	bindVAO();
 }
 
 
 Box::~Box()
 {
+}
+
+void Box::addVertices()
+{
+	GLfloat _0_33 = 1.0f / 3.0f;
+	GLfloat _0_66 = 2.0f / 3.0f;
+	GLfloat _O_5 = 0.5f;
+	setVertices(vector<GLfloat>{
+		// coordinates			// normal			// texture
+		//up
+		-halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
+			halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.25f, 0.0f,
+			halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+			-halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, _O_5, 0.0f,
+			//down
+			-halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
+			halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.25f, 1.0f,
+			-halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, _O_5, 1.0f,
+			halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+			//right
+			-halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
+			halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 1.0f, _0_66,
+			halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 1.0f, _0_33,
+			-halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
+			//left
+			-halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
+			halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+			-halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
+			halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+			//back
+			-halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_66,
+			-halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.75f, _0_33,
+			-halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, _O_5, _0_33,
+			-halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.75f, _0_66,
+			//front
+			halfSide, -halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_66,
+			halfSide, halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.0f, _0_33,
+			halfSide, -halfSide, -halfSide, 0.0f, 0.0f, 0.0f, 0.0f, _0_66,
+			halfSide, halfSide, halfSide, 0.0f, 0.0f, 0.0f, 0.25f, _0_33,
+	});
+}
+
+void Box::addIndices()
+{
+	for (int i = 0; i < indicesCount; i += 4)
+	{
+		saveIndicesToVector(i,i+1,i+2);
+		saveIndicesToVector(i+1, i, i + 3);
+	}
 }
 
 void Box::calcNormalVec(vector<GLfloat>& v)
@@ -90,7 +89,7 @@ void Box::calcNormalVec(vector<GLfloat>& v)
 		v[i + 4] = v[i + 4 + vAC] = v[i + 4 + vAC2] = v[i + 4 + vAC3] = normal.y;
 		v[i + 5] = v[i + 5 + vAC] = v[i + 5 + vAC2] = v[i + 5 + vAC3] = normal.z;
 		*/
-		// ib4 jest niewydajnie wiêc u¿ylmy c
+		// ib4 jest niewydajnie wiêc u¿yjmy c
 		memcpy(&v[i + 3], &normal.x, sizeOf3Floats);
 		memcpy(&v[i + 3 + vAC], &normal.x, sizeOf3Floats);
 		memcpy(&v[i + 3 + vAC2], &normal.x, sizeOf3Floats);

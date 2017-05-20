@@ -4,10 +4,13 @@
 class Box :public Shape
 {
 public:
-	Box();
+	Box(GLfloat side);
 	~Box();
 private:
+	void addVertices();
+	void addIndices();
 	void calcNormalVec(vector<GLfloat>&);
+	GLfloat halfSide;
 	GLsizei vertexAtribCount;
 	GLsizei indicesInTriangle;
 	GLsizei verticesCount;

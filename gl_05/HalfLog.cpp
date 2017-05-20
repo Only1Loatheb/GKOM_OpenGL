@@ -2,68 +2,25 @@
 
 
 
-HalfLog::HalfLog()
+HalfLog::HalfLog(GLfloat r, GLfloat h, GLuint slices, GLfloat part)
 {
 	// changable values 
-	this->radius = 0.5f;
-	this->height = 1.5f;
-	this->slices = 20;
+	this->radius = r;
+	this->heightHalf = h / 2.0f;
+	this->slices = slices;
+	this->part = part;
 	// additional helping values
-	this->theta  = glm::pi<double>() * 2 / slices;
-	this->halfTheta = theta / 2.0;
-	this->minusHeight = -height;
+	this->sides = slices * part +1;
+	this->theta  = glm::two_pi<double>() / slices;
+	this->minusHeightHalf = -heightHalf;
 	this->zeroZeroOne = glm::vec3(.0f, .0f, 1.f);
 	this->zeroZeroMinusOne = glm::vec3(.0f, .0f, -1.f);
-	//loops
-	// vertices side
-	for (int i = 0; i < slices; i++) {
-		glm::vec3 normal = glm::vec3(cos(theta * i), sin(theta * i), 0.0f);
-		glm::vec3 position = glm::vec3(glm::vec2(radius * normal), height);
-		saveVertexToVector(position, normal,randomVec2());
-	}
 
-	for (int i = 0; i < slices; i++) {
-		glm::vec3 normal = glm::vec3(cos(theta * i + halfTheta), sin(theta * i + halfTheta), 0.0f);
-		glm::vec3 position = glm::vec3(glm::vec2(radius * normal), minusHeight);
-		saveVertexToVector(position, normal, randomVec2());
-	}
-	// vertices lids
-	for (int i = 0; i < slices; i++) {
-		glm::vec3 position = glm::vec3(cos(theta * i) * radius , sin(theta * i) * radius, height);
-		saveVertexToVector(position, zeroZeroOne, randomVec2());
-	}
-
-	for (int i = 0; i < slices; i++) {
-		glm::vec3 position = glm::vec3(
-			cos(theta * i + halfTheta) * radius, sin(theta * i + halfTheta) * radius, minusHeight);
-		saveVertexToVector(position, zeroZeroMinusOne, randomVec2());
-	}
-	
-	// Generate indices for triangular mesh 
-	for (int i = 0; i < slices; ++i) {
-		int i1 = i;
-		int i2 = (i1 + 1) % slices;
-		int i3 = i1 + slices;
-		int i4 = i2 + slices;
-		saveIndicesToVector(i1, i3, i2);
-		saveIndicesToVector(i4, i2, i3);
-	}
-
-	//poles
-	int positive = countOfVertices();
-	saveVertexToVector(glm::vec3(0.0f, 0.0f, height), zeroZeroOne, randomVec2());
-
-	int negative = countOfVertices();
-	saveVertexToVector(glm::vec3(0.0f, 0.0f, minusHeight), zeroZeroMinusOne, randomVec2());
-	int twoTimesSlices = slices * 2;
-	for (int i = twoTimesSlices; i < slices * 3 ; ++i) {
-		int i1 = i;
-		int i2 = (i1 + 1) % slices + twoTimesSlices;
-		int i3 = i1 + slices;
-		int i4 = i2 + slices;
-		saveIndicesToVector(i1, positive, i2);
-		saveIndicesToVector(i4, i3, negative);
-	}
+	addSideVertices();
+	addLidsVertices();
+	addSideIndices();
+	addLidsIndices();
+	addCutVertInd();
 	bindVAO();
 }
 
@@ -71,12 +28,115 @@ HalfLog::~HalfLog()
 {
 }
 
-float randFloat() // 0 - 1
+void HalfLog::addSideVertices()
+{
+	for (int i = 0; i < sides; i++) {
+		glm::vec3 normal(cos(theta * i), sin(theta * i), 0.0f);
+		glm::vec3 position(glm::vec2(radius * normal), heightHalf);
+		saveVertexToVector(position, normal, randomVec2());
+	}
+
+	for (int i = 0; i < sides; i++) {
+		glm::vec3 normal(cos(theta * i), sin(theta * i), 0.0f);
+		glm::vec3 position(glm::vec2(radius * normal), minusHeightHalf);
+		saveVertexToVector(position, normal, randomVec2());
+	}
+}
+
+void HalfLog::addLidsVertices()
+{
+	for (int i = 0; i < sides; i++) {
+		glm::vec3 position(cos(theta * i) * radius, sin(theta * i) * radius, heightHalf);
+		saveVertexToVector(position, zeroZeroOne, randomVec2());
+	}
+
+	for (int i = 0; i < sides; i++) {
+		glm::vec3 position(cos(theta * i) * radius, sin(theta * i) * radius, minusHeightHalf);
+		saveVertexToVector(position, zeroZeroMinusOne, randomVec2());
+	}
+}
+
+void HalfLog::addSideIndices()
+{
+	int sidesMinusOne = sides - 1;
+	for (int i = 0; i < sidesMinusOne; ++i) {
+		int i1 = i;
+		int i2 = i1 + 1;
+		int i3 = i1 + sides;
+		int i4 = i2 + sides;
+		saveIndicesToVector(i1, i3, i2);
+		saveIndicesToVector(i4, i2, i3);
+	}
+}
+
+void HalfLog::addLidsIndices()
+{
+	//poles
+	int positivePoleIndex = countOfVertices();
+	saveVertexToVector(glm::vec3(0.0f, 0.0f, heightHalf), zeroZeroOne, randomVec2());
+	int negativePoleIndex = countOfVertices();
+	saveVertexToVector(glm::vec3(0.0f, 0.0f, minusHeightHalf), zeroZeroMinusOne, randomVec2());
+	// Generate indices lids
+	int twoTimesSlices = sides * 2;
+	int threeTimesSlices = sides * 3 - 1;
+	for (int i = twoTimesSlices; i < threeTimesSlices; ++i) {
+		int i1 = i;
+		int i2 = i1 + 1;
+		int i3 = i1 + sides;
+		int i4 = i2 + sides;
+		saveIndicesToVector(i1, positivePoleIndex, i2);
+		saveIndicesToVector(i4, i3, negativePoleIndex);
+	}
+}
+
+void HalfLog::addCutVertInd()
+{
+	glm::vec3 positivePolePosition(0.0f, 0.0f, heightHalf);
+	//poles
+	glm::vec3 firstPositivePosition(cos(0) * radius, sin(0) * radius, heightHalf);
+	glm::vec3 firstNegativePosition(cos(0) * radius, sin(0) * radius, minusHeightHalf);
+	
+	glm::vec3 firstNormal = calcNormalVec(positivePolePosition,firstNegativePosition, firstPositivePosition);
+
+	int firstPositiveCutIndex = countOfVertices();
+	saveVertexToVector(firstPositivePosition, firstNormal, randomVec2());
+	int firstNegativeCutIndex = countOfVertices();
+	saveVertexToVector(firstNegativePosition, firstNormal, randomVec2());
+	int firstPositivePoleIndex = countOfVertices();
+	saveVertexToVector(positivePolePosition, firstNormal, randomVec2());
+	int firstNegativePoleIndex = countOfVertices();
+	saveVertexToVector(-positivePolePosition, firstNormal, randomVec2());
+
+
+	GLfloat thetaTimesSidesMinusOne = theta * (sides-1);
+	glm::vec3 secondPositivePosition(cos(thetaTimesSidesMinusOne) * radius, sin(thetaTimesSidesMinusOne) * radius, heightHalf);
+	glm::vec3 secondNegativePosition(cos(thetaTimesSidesMinusOne) * radius, sin(thetaTimesSidesMinusOne) * radius, minusHeightHalf);
+	
+	glm::vec3 secondNormal = calcNormalVec(positivePolePosition,secondPositivePosition, secondNegativePosition);
+
+	int secondPositiveCutIndex = countOfVertices();
+	saveVertexToVector(secondPositivePosition, secondNormal, randomVec2());
+	int secondNegativeCutIndex = countOfVertices();
+	saveVertexToVector(secondNegativePosition, secondNormal, randomVec2());
+	int secondPositivePoleIndex = countOfVertices();
+	saveVertexToVector(positivePolePosition, secondNormal, randomVec2());
+	int secondNegativePoleIndex = countOfVertices();
+	saveVertexToVector(-positivePolePosition, secondNormal, randomVec2());
+
+	saveIndicesToVector(firstPositiveCutIndex, firstNegativeCutIndex, firstPositivePoleIndex);
+	saveIndicesToVector(firstNegativeCutIndex, firstNegativePoleIndex, firstPositivePoleIndex);
+	saveIndicesToVector(secondPositiveCutIndex, secondNegativeCutIndex, secondPositivePoleIndex);
+	saveIndicesToVector(secondNegativeCutIndex, secondNegativePoleIndex, secondPositivePoleIndex);
+
+}
+
+
+float HalfLog::randFloat() const// 0 - 1
 {
 	return static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 }
 
-glm::vec2 randomVec2()
+glm::vec2 HalfLog::randomVec2()const
 {
 	return glm::vec2(randFloat(), randFloat());
 }

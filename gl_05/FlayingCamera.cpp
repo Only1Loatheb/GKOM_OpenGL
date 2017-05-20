@@ -2,7 +2,7 @@
 
 FlayingCamera::FlayingCamera()
 	:Camera(),
-	cameraFront(glm::vec3(0.0f, 0.0f, -1.0f)),
+	cameraFront(glm::vec3(0.0f, 1.0f, 0.0f)),
 	cameraSpeed(0.05f)
 {
 }

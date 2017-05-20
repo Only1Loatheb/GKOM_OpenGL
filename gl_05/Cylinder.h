@@ -1,24 +1,23 @@
 #pragma once
 #include "Shape.h"
 
-class HalfLog : public Shape
+class Cylinder : public Shape
 {
 public:
-	HalfLog(GLfloat r, GLfloat h, GLuint slices, GLfloat part);
-	~HalfLog();
+	Cylinder(GLfloat r,GLfloat h,GLuint sides);
+	~Cylinder();
 private:
 	void addSideVertices();
 	void addLidsVertices();
 	void addSideIndices();
 	void addLidsIndices();
-	void addCutVertInd();
+
 	GLfloat radius;
 	GLfloat heightHalf;
-	GLuint slices;
-	GLfloat part;
-	GLuint sides;
-	double theta;
+	GLuint sides; // slices = no. of Longitude lines
 	GLfloat minusHeightHalf;
+	double theta;
+	double halfTheta;
 	glm::vec3 zeroZeroOne;
 	glm::vec3 zeroZeroMinusOne;
 	float randFloat()const;
