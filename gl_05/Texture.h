@@ -1,10 +1,8 @@
 #pragma once
+#include <stdexcept>
 #include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include <SOIL.h>
 
-#include <stdexcept>
-#include <string>
 class Texture
 {
 public:

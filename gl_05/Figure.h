@@ -1,9 +1,8 @@
 #pragma once
-#define GLEW_STATIC
 #include <memory>
 #include "Shape.h"
 #include "Texture.h"
-#include "shprogram.h"
+#include "ShaderProgram.h"
 #include "Animation.h"
 
 class Figure

@@ -1,10 +1,5 @@
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-using namespace std;
+#include "ShaderProgram.h"
 
-#include "shprogram.h"
 ShaderProgram::ShaderProgram(const GLchar* vertexPath, const GLchar* fragmentPath)
 {
 	// prepare vertex and fragment shaders

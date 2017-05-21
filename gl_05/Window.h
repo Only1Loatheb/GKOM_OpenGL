@@ -1,12 +1,9 @@
 #pragma once
 #define GLEW_STATIC
+#include <stdexcept>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include <string>
-#include <stdexcept>
-
-#include <iostream>
 class Window
 {
 public:

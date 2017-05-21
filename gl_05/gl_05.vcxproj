@@ -205,7 +205,7 @@
     <ClInclude Include="SawingAnimation.h" />
     <ClInclude Include="SceneElement.h" />
     <ClInclude Include="Shape.h" />
-    <ClInclude Include="shprogram.h" />
+    <ClInclude Include="ShaderProgram.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="SplitingAnimation.h" />
     <ClInclude Include="Texture.h" />

@@ -1,6 +1,6 @@
 #include <vector>
 #include <memory>
-#include "Window.h"
+#include <GL/glew.h>
 #include "Controller.h"
 #include "Perspective.h"
 #include "Timer.h"
@@ -16,6 +16,7 @@
 #include "Cylinder.h"
 #include "SawingAnimation.h"
 #include "SplitingAnimation.h"
+#include "Window.h"
 
 static const GLuint WIDTH = 1920;
 static const GLuint HEIGHT = 1080;
@@ -89,11 +90,11 @@ int main()
 			move(make_unique<SawingAnimation>(animationTime, startCuttingTime,startSplitingTime, swings)))));
 		//logs
 		sceneElements.push_back(move(make_unique<SceneElement>(sceneShader, log, wood,
-			glm::rotate(glm::rotate(glm::translate(glm::mat4(), glm::vec3(0.0f, 1.01f, 0.0f)), 
+			glm::rotate(glm::rotate(glm::translate(glm::mat4(), glm::vec3(0.0f, 1.015f, 0.0f)), 
 				glm::radians(90.f), glm::vec3(1.f, .0f, 0.f)), glm::radians(90.f), glm::vec3(.0f, 1.f, 0.f)),
 			move(make_unique<SplitingAnimation>(animationTime, startSplitingTime, startLayingTime,false)))));
 		sceneElements.push_back(move(make_unique<SceneElement>(sceneShader, log, wood,
-			glm::rotate(glm::rotate(glm::translate(glm::mat4(), glm::vec3(0.0f, 1.01f, 0.0f)),
+			glm::rotate(glm::rotate(glm::translate(glm::mat4(), glm::vec3(0.0f, 1.015f, 0.0f)),
 				 glm::radians(90.f), glm::vec3(-1.f, .0f, 0.f)), glm::radians(90.f), glm::vec3(.0f, 1.f, 0.f)),
 			move(make_unique<SplitingAnimation>(animationTime, startSplitingTime, startLayingTime,true)))));
 		//utilities
