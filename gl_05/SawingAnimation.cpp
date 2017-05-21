@@ -1,14 +1,17 @@
 #include "SawingAnimation.h"
 
-SawingAnimation::SawingAnimation( GLfloat loopT, GLfloat sawingTime, GLuint swings)
-	:Animation(loopT), currentSwingTime(0.f)
+SawingAnimation::SawingAnimation( GLfloat loopT, GLfloat startSawingTime, 
+	GLfloat endSawingTime, GLuint swings)
+	:Animation(loopT), currentSwingTime(0.f), startSawingTime(startSawingTime)
 {
 	state = INIT;
-	GLfloat dy = -1.3f / sawingTime;
-	forwardSpeed = glm::vec3(1.f,dy,0.f);
-	backwardSpeed = glm::vec3(-1.f, dy, 0.f);
-	swingTime = sawingTime / swings;
+	sawingTime = endSawingTime - startSawingTime;
+	swingTime = sawingTime / (GLfloat)swings;
 	goBackwardTime = swingTime / 2.0f;
+	GLfloat dy = -1.3f / sawingTime ;
+	GLfloat dx = .5f / swingTime;
+	forwardSpeed = glm::vec3(dx,dy,0.f);
+	backwardSpeed = glm::vec3(-dx, dy, 0.f);
 	numberOfSwings = swings;
 	swing = 0;
 }
@@ -20,7 +23,15 @@ SawingAnimation::~SawingAnimation()
 void SawingAnimation::animate(glm::mat4 & local, GLfloat dt)
 {
 	currentTime += dt;
-	if (state == FORWARD)
+	if (state == PREPARING)
+	{
+		if (currentTime > startSawingTime)
+		{
+			state = FORWARD;
+		}
+		return;
+	}
+	else if (state == FORWARD)
 	{
 		currentSwingTime += dt;
 		local = glm::translate(local, dt * forwardSpeed);
@@ -54,14 +65,14 @@ void SawingAnimation::animate(glm::mat4 & local, GLfloat dt)
 			currentTime = 0.f;
 			local = startingLocal;
 			swing = 0u;
-			state = FORWARD;
+			state = PREPARING;
 		}
 		return;
 	}
 	else if(state == INIT)
 	{
 		startingLocal = local;;
-		state = FORWARD;
+		state = PREPARING;
 		return;
 	}
 }

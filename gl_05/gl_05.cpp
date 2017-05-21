@@ -73,24 +73,29 @@ int main()
 			glm::scale(glm::translate(glm::mat4(), glm::vec3(2.0f, 2.0f-0.1f, 0.0f)), glm::vec3(0.2f, 0.2f, 2.2f)))));
 		sceneElements.push_back(move(make_unique<SceneElement>(sceneShader, box, metal,
 			glm::scale(glm::translate(glm::mat4(), glm::vec3(-2.0f, 2.0f-0.1f, 0.0f)), glm::vec3(0.2f, 0.2f, 2.2f)))));
-		//saw 
-		GLfloat animationTime = 10.f;//30.f;
+		//animation proporties
+		GLuint swings = 13u; // no more than 38 because of float representation issues (for 1 saw goes back and forward one time each)
+		GLfloat startCuttingTime = 2.f;
+		GLfloat startSplitingTime = startCuttingTime + 6.f;
+		GLfloat startLayingTime = startSplitingTime + .5f;
+		GLfloat animationTime = startLayingTime + 2.f;
+		//saw
 		GLfloat sawH = 1.8f;
-		GLfloat cuttingTime = 6.f;//26.f;
-		GLuint swings = 26u;
 		sceneElements.push_back(move(make_unique<SceneElement>(sceneShader, sawPlate, metal,
-			glm::translate(glm::mat4(), glm::vec3(-.1f, sawH + sawPlateHeight /2.f, .0f)), move(make_unique<SawingAnimation>(animationTime,cuttingTime, swings)))));
+			glm::translate(glm::mat4(), glm::vec3(-.1f, sawH + sawPlateHeight /2.f, .0f)), 
+			move(make_unique<SawingAnimation>(animationTime, startCuttingTime,startSplitingTime, swings)))));
 		sceneElements.push_back(move(make_unique<SceneElement>(sceneShader, saw, metal, 
-			glm::translate(glm::mat4(), glm::vec3(-.1f, sawH, 0.0f)), move(make_unique<SawingAnimation>(animationTime,cuttingTime, swings)))));
+			glm::translate(glm::mat4(), glm::vec3(-.1f, sawH, 0.0f)), 
+			move(make_unique<SawingAnimation>(animationTime, startCuttingTime,startSplitingTime, swings)))));
 		//logs
 		sceneElements.push_back(move(make_unique<SceneElement>(sceneShader, log, wood,
-			glm::rotate(glm::rotate(glm::translate(glm::mat4(), glm::vec3(0.0f, 1.0f, 0.0f)), 
+			glm::rotate(glm::rotate(glm::translate(glm::mat4(), glm::vec3(0.0f, 1.01f, 0.0f)), 
 				glm::radians(90.f), glm::vec3(1.f, .0f, 0.f)), glm::radians(90.f), glm::vec3(.0f, 1.f, 0.f)),
-			move(make_unique<SplitingAnimation>(animationTime, cuttingTime,false)))));
+			move(make_unique<SplitingAnimation>(animationTime, startSplitingTime, startLayingTime,false)))));
 		sceneElements.push_back(move(make_unique<SceneElement>(sceneShader, log, wood,
-			glm::rotate(glm::rotate(glm::translate(glm::mat4(), glm::vec3(0.0f, 1.0f, 0.0f)),
+			glm::rotate(glm::rotate(glm::translate(glm::mat4(), glm::vec3(0.0f, 1.01f, 0.0f)),
 				 glm::radians(90.f), glm::vec3(-1.f, .0f, 0.f)), glm::radians(90.f), glm::vec3(.0f, 1.f, 0.f)),
-			move(make_unique<SplitingAnimation>(animationTime, cuttingTime,true)))));
+			move(make_unique<SplitingAnimation>(animationTime, startSplitingTime, startLayingTime,true)))));
 		//utilities
 		auto perspective = Perspective(WIDTH,HEIGHT);
 		auto camera = CircleCamera(5,2,MIN_RADIUS,MAX_RADIUS,MIN_HEIGHT,MAX_HEIGHT);

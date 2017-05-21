@@ -1,10 +1,10 @@
 #include "SplitingAnimation.h"
 
-SplitingAnimation::SplitingAnimation( GLfloat loopT,GLfloat start, GLboolean side)
-	:Animation( loopT), startFallingTime(start)
+SplitingAnimation::SplitingAnimation( GLfloat loopT,GLfloat start, GLfloat end, GLboolean side)
+	:Animation( loopT), startFallingTime(start), endFalingTime(end)
 {
 	state = INIT;
-	fallingTime = loopT - start;
+	fallingTime =  end - start;
 	theta = 90.f/ fallingTime;
 	translation = glm::vec3(0.2f / fallingTime,1.f / fallingTime, 0.f);
 	if (side)
@@ -22,15 +22,23 @@ SplitingAnimation::~SplitingAnimation()
 void SplitingAnimation::animate(glm::mat4 & local, GLfloat dt)
 {
 	currentTime += dt;
-	if (state == FALLING)
+	if (state == LAYING)
 	{
-		local = glm::rotate(local, glm::radians(theta * dt ) , rotateAround);
-		local = glm::translate(local, translation * dt);
 		if (currentTime > loopTime)
 		{
 			local = startingLocal;
 			currentTime = 0.f;
 			state = WAITING;
+		}
+		return;
+	}
+	else if (state == FALLING)
+	{
+		local = glm::rotate(local, glm::radians(theta * dt ) , rotateAround);
+		local = glm::translate(local, translation * dt);
+		if (currentTime > endFalingTime)
+		{
+			state = LAYING;
 		}
 		return;
 	}
