@@ -2,11 +2,11 @@
  
 
 Shape::Shape()
+	: vertexAtributesCount(8),
+	indicesInTriangle(3),
+	vertices(vector<GLfloat>()),
+	indices(vector<GLuint>())
 {
-	vertexAtributesCount = 8;
-	indicesInTriangle = 3;
-	vertices = vector<GLfloat>();
-	indices = vector<GLuint>();
 }
 
 

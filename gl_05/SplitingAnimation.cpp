@@ -1,4 +1,10 @@
 #include "SplitingAnimation.h"
+#include <glm/gtc/matrix_transform.hpp>
+
+#define INIT 1u
+#define WAITING 2u
+#define FALLING 3u
+#define LAYING  4u
 
 SplitingAnimation::SplitingAnimation( GLfloat loopT,GLfloat start, GLfloat end, GLboolean side)
 	:Animation( loopT), startFallingTime(start), endFalingTime(end)

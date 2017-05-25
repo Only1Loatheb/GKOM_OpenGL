@@ -7,13 +7,12 @@ Box::Box(GLfloat side)
 }
 
 Box::Box(GLfloat x, GLfloat y, GLfloat z)
+ : verticesCount(8 * 6 * 4),
+	indicesCount(12 * 3),
+	halfX (x / 2.0f),
+	halfY (y / 2.0f),
+	halfZ( z / 2.0f)
 {
-	this->halfX = x / 2.0f;
-	this->halfY = y / 2.0f;
-	this->halfZ = z / 2.0f;
-	verticesCount = 8 * 6 * 4;
-	indicesCount = 12 * 3;
-
 	addVertices();
 	calcNormalVec(getVertices());
 	addIndices();

@@ -1,31 +1,26 @@
 #include "SawBlade.h"
 
 SawBlade::SawBlade(GLfloat l, GLuint nOfteeth, GLfloat toothW, GLfloat tootH, GLfloat toothS)
-{
+:
 	// changable values 
-	this->fullLength = l;
-	this->numberOfteeth = nOfteeth;
-	this->toothWidth = toothW;
-	this->toothHeight = tootH;
-	this->toothSet = toothS;
+	fullLength(l),
+	numberOfteeth(nOfteeth),
+	toothWidth(toothW),
+	toothHeight(tootH),
+	toothSet(toothS),
 	// additional helping values
-	this->baseHeight = 0.0f;
-	this->verricesInTooth = 10;
-	this->toothLength = fullLength / numberOfteeth;
-	this->halfToothLength = toothLength / 2.0f;
-	this->halfToothWidth = toothWidth / 2.0f;
-	this->minusHalfToothWidth = -halfToothWidth;
+	baseHeight(0.0f),
+	verricesInTooth(10),
+	toothLength(fullLength / numberOfteeth),
+	halfToothLength(toothLength / 2.0f),
+	halfToothWidth(toothWidth / 2.0f),
+	minusHalfToothWidth(-halfToothWidth),
 	// volatile values
-	this->halfLength = fullLength / 2.0f;
-	this->inverted = false;
-	currentVecIndex = 0;
-	//loops
-	glm::vec3 p1 = makePoint1();
-	glm::vec3 p2 = makePoint2();
-	glm::vec3 p3 = makePoint3();
-	glm::vec3 norm = calcNormalVec(p1, p3, p2);
-	saveVertexToVector(p1, norm, glm::vec2(0.5f, 0.0f));
-	saveVertexToVector(p2, norm, glm::vec2(0.5f, 0.25f));
+	halfLength(fullLength / 2.0f),
+	inverted(false),
+	currentVecIndex(0)
+{
+	addFirstTwoPoints();
 	for (int i = 0; i < numberOfteeth; ++i)
 	{	
 		addTriangle1();
@@ -43,6 +38,16 @@ SawBlade::SawBlade(GLfloat l, GLuint nOfteeth, GLfloat toothW, GLfloat tootH, GL
 
 SawBlade::~SawBlade()
 {
+}
+
+void SawBlade::addFirstTwoPoints()
+{
+	glm::vec3 p1 = makePoint1();
+	glm::vec3 p2 = makePoint2();
+	glm::vec3 p3 = makePoint3();
+	glm::vec3 norm = calcNormalVec(p1, p3, p2);
+	saveVertexToVector(p1, norm, glm::vec2(0.5f, 0.0f));
+	saveVertexToVector(p2, norm, glm::vec2(0.5f, 0.25f));
 }
 
 void SawBlade::addTriangle1()

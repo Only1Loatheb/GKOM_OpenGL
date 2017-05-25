@@ -7,12 +7,13 @@ public:
 	SawBlade(GLfloat l,	GLuint nOfteeth,GLfloat toothW,GLfloat tootH,GLfloat toothS);
 	~SawBlade();
 private:
+	void addFirstTwoPoints();
 	void addTriangle1();
 	void addTriangle2();
 	void addTriangle3();
 	void addTriangle4();
 	void addTriangle5();
-
+	
 	glm::vec3 makePoint1();
 	glm::vec3 makePoint2();
 	glm::vec3 makePoint3();
@@ -25,16 +26,14 @@ private:
 	GLfloat toothWidth;
 	GLfloat toothHeight;
 	GLfloat toothSet;
-	GLfloat toothLength;
-	GLsizei verricesInTooth;
-	GLsizei trianglesInTooth;
-	GLfloat halfLength;
 	GLfloat baseHeight;
+	GLsizei verricesInTooth;
+	GLfloat toothLength;
 	GLfloat halfToothWidth;
 	GLfloat halfToothLength;
 	GLfloat minusHalfToothWidth;
-	GLsizei currentVecIndex;
+	GLfloat halfLength;
 	GLboolean inverted;
-
+	GLsizei currentVecIndex;
 };
 

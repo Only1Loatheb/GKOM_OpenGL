@@ -7,11 +7,13 @@ Figure::Figure(shared_ptr<ShaderProgram>& program, shared_ptr<Shape> mesh,
 	animation(std::move(anim)),
 	local(glm::mat4()),
 	startingLocal(local)
-{}
+{
+}
 
 
 Figure::~Figure()
-{}
+{
+}
 
 
 glm::mat4  Figure::getLocalMat() const

@@ -1,11 +1,6 @@
 #pragma once
 #include "Animation.h"
 
-#define INIT 1u
-#define WAITING 2u
-#define FALLING 3u
-#define LAYING  4u
-
 class SplitingAnimation : public Animation
 {
 public:

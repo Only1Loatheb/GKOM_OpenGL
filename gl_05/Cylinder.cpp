@@ -3,19 +3,18 @@
 
 
 Cylinder::Cylinder(GLfloat r, GLfloat h, GLuint sides)
-{
-
+	:	
 	// changable values 
-	this->radius = r;
-	this->heightHalf = h/2;
-	this->sides = sides;
+	radius (r),
+	heightHalf(h / 2),
+	sides(sides),
 	// additional helping values
-	this->theta =  glm::two_pi<double>() / sides;
-	this->halfTheta = theta / 2.0;
-	this->minusHeightHalf = -heightHalf;
-	this->zeroZeroOne = glm::vec3(.0f, .0f, 1.f);
-	this->zeroZeroMinusOne = glm::vec3(.0f, .0f, -1.f);
-
+	theta(glm::two_pi<double>() / sides),
+	halfTheta(theta / 2.0),
+	minusHeightHalf(-heightHalf),
+	zeroZeroOne(glm::vec3(.0f, .0f, 1.f)),
+	zeroZeroMinusOne(glm::vec3(.0f, .0f, -1.f))
+{
 	addSideVertices();
 	addLidsVertices();
 	addSideIndices();

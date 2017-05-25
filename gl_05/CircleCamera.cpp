@@ -3,11 +3,11 @@
 CircleCamera::CircleCamera(GLfloat r, GLfloat h, GLfloat minr, GLfloat maxr,
 	GLfloat minh,	GLfloat maxh)
 	:Camera(), radius(r),height(h), minR(minr), maxR(maxr),	minH(minh),
-	maxH(maxh)
+	maxH(maxh),
+	zero (glm::vec3(0.0f)),
+	rotation(0)
 {
 	cameraPos = glm::vec3(r, h, 0.0f);
-	zero = glm::vec3(0.0f);
-	rotation = 0;
 }
 
 CircleCamera::~CircleCamera()

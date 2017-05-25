@@ -3,19 +3,19 @@
 
 
 HalfLog::HalfLog(GLfloat r, GLfloat h, GLuint slices, GLfloat part)
-{
+	:	
 	// changable values 
-	this->radius = r;
-	this->heightHalf = h / 2.0f;
-	this->slices = slices;
-	this->part = part;
+	radius(r),
+	heightHalf(h / 2.0f),
+	slices(slices),
+	part(part),
 	// additional helping values
-	this->sides = slices * part +1;
-	this->theta  = glm::two_pi<double>() / slices;
-	this->minusHeightHalf = -heightHalf;
-	this->zeroZeroOne = glm::vec3(.0f, .0f, 1.f);
-	this->zeroZeroMinusOne = glm::vec3(.0f, .0f, -1.f);
-
+	sides(slices * part + 1),
+	theta(glm::two_pi<double>() / slices),
+	minusHeightHalf(-heightHalf),
+	zeroZeroOne(glm::vec3(.0f, .0f, 1.f)),
+	zeroZeroMinusOne(glm::vec3(.0f, .0f, -1.f))
+{
 	addSideVertices();
 	addLidsVertices();
 	addSideIndices();

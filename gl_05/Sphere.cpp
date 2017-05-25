@@ -3,14 +3,15 @@
 
 
 Sphere::Sphere(GLfloat r, GLuint stacks, GLuint slices)
-{	// changable values
-	this->radius = r;
-	this->stacks = stacks;
-	this->slices = slices;
+	:
+	// changable values
+	radius(r),
+	stacks(stacks),
+	slices(slices),
 	// additional helping values
-	this->deltaLong = glm::pi<double>() * 2 / slices;
-	this->deltaLat = glm::pi<double>() / stacks;
-	
+	deltaLong(glm::pi<double>() * 2 / slices),
+	deltaLat(glm::pi<double>() / stacks)
+{	
 	addNorthVertice();
 	addMainVertices();
 	addSouthVerttice();
@@ -32,8 +33,8 @@ void Sphere::addNorthVertice()
 
 void Sphere::addMainVertices()
 {
-	for (int i = 1; i < stacks; ++i) {
-		for (int j = 0; j <= slices; ++j) {
+	for (GLuint i = 1; i < stacks; ++i) {
+		for (GLuint j = 0; j <= slices; ++j) {
 			glm::vec3 normal = glm::vec3(
 				sin(deltaLat * i) * cos(deltaLong * j),
 				sin(deltaLat * i) * sin(deltaLong * j),
@@ -54,15 +55,15 @@ void Sphere::addSouthVerttice()
 
 void Sphere::addNorthIndices()
 {
-	for (int j = 1; j <= slices; ++j) {
+	for (GLuint j = 1; j <= slices; ++j) {
 		saveIndicesToVector(0, j, j + 1);
 	}
 }
 
 void Sphere::addMainIndices()
 {
-	for (int i = 1; i < stacks; ++i) {
-		for (int j = 1; j <= slices; ++j) {
+	for (GLuint i = 1; i < stacks; ++i) {
+		for (GLuint j = 1; j <= slices; ++j) {
 			// each quad gives two triangles
 			// triangle one
 			saveIndicesToVector(
@@ -80,9 +81,9 @@ void Sphere::addMainIndices()
 
 void Sphere::addSouthIndices()
 {
-	int numVertices = (slices + 1) * (stacks - 1) + 2;
-	int temp = numVertices - 1;
-	for (int j = temp - slices; j < temp; ++j) {
+	GLuint numVertices = (slices + 1) * (stacks - 1) + 2;
+	GLuint temp = numVertices - 1;
+	for (GLuint j = temp - slices; j < temp; ++j) {
 		saveIndicesToVector(temp, j, j - 1);
 	}
 }

@@ -1,19 +1,29 @@
 #include "SawingAnimation.h"
+#include <glm/gtc/matrix_transform.hpp>
+
+#define FORWARD 1u
+#define BACKWARD 2u
+#define INIT 3u
+#define WAITING 4u
+#define PREPARING 5u
+
+#define SWING_X .5f
+#define SWING_Y -1.3f
 
 SawingAnimation::SawingAnimation( GLfloat loopT, GLfloat startSawingTime, 
 	GLfloat endSawingTime, GLuint swings)
-	:Animation(loopT), currentSwingTime(0.f), startSawingTime(startSawingTime)
+	: Animation(loopT), 
+	currentSwingTime(0.f), 
+	startSawingTime(startSawingTime),
+	state(INIT),
+	swing(0),
+	sawingTime(endSawingTime - startSawingTime),
+	swingTime(sawingTime / (GLfloat)swings),
+	goBackwardTime(swingTime / 2.0f),
+	forwardSpeed(glm::vec3(SWING_X / swingTime, SWING_Y / sawingTime, 0.f)),
+	backwardSpeed(glm::vec3(-SWING_X / swingTime, SWING_Y / sawingTime, 0.f)),
+	numberOfSwings(swings)
 {
-	state = INIT;
-	sawingTime = endSawingTime - startSawingTime;
-	swingTime = sawingTime / (GLfloat)swings;
-	goBackwardTime = swingTime / 2.0f;
-	GLfloat dy = -1.3f / sawingTime ;
-	GLfloat dx = .5f / swingTime;
-	forwardSpeed = glm::vec3(dx,dy,0.f);
-	backwardSpeed = glm::vec3(-dx, dy, 0.f);
-	numberOfSwings = swings;
-	swing = 0;
 }
 
 SawingAnimation::~SawingAnimation()
