@@ -14,7 +14,6 @@ private:
 	void addCutVertInd();
 	GLfloat radius;
 	GLfloat heightHalf;
-	GLuint slices;
 	GLfloat part;
 	GLuint sides;
 	double theta;

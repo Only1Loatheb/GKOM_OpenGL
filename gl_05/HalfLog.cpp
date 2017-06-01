@@ -7,7 +7,6 @@ HalfLog::HalfLog(GLfloat r, GLfloat h, GLuint slices, GLfloat part)
 	// changable values 
 	radius(r),
 	heightHalf(h / 2.0f),
-	slices(slices),
 	part(part),
 	// additional helping values
 	sides(slices * part + 1),
