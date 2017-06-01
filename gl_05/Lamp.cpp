@@ -49,6 +49,6 @@ void Lamp::addLightPosToShaders( const std::vector<shared_ptr<ShaderProgram>>& p
 		glUniform3f(lightPosLoc, lightPos.x, lightPos.y, lightPos.z);
 
 		GLint lightColorLoc = glGetUniformLocation(p->getProgramID(), "lightColor");
-		glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f);
+		glUniform3f(lightColorLoc, lightColor.r, lightColor.g, lightColor.b);
 	}
 }
